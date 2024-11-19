@@ -14,7 +14,7 @@ theme:
   name: material
 nav:
   - Home: index.md
-  #- Configuración de Entorno: configuracion-entorno.md
+  - Crear API REST: create_api_rest.md
   #- Chat Model: chat-model.md
   #- Function Calling: chat-model-calling.md
   #- Image Model: image-model.md
