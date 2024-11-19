@@ -1,0 +1,59 @@
+site_name: "GeoLabs Kotlin-GCP"
+site_description: "GeoLabs Kotlin-GCP Docs"
+site_author: "Geovanny Mendoza"
+site_url: "https://geovannymcode.github.io/geolabs-kotlingcp.github.io/"
+
+# Repository
+repo_name: "/geovannymcode/geolabs-kotlingcp.github.io"
+repo_url: "https://geovannymcode.github.io/geolabs-kotlingcp.github.io"
+
+# Copyright
+copyright: "Copyright &copy; 2024 Geovanny Mendoza"
+
+theme:
+  name: material
+nav:
+  - Home: index.md
+  #- Configuración de Entorno: configuracion-entorno.md
+  #- Chat Model: chat-model.md
+  #- Function Calling: chat-model-calling.md
+  #- Image Model: image-model.md
+  #- Multi Modality: multimodality.md
+  #- Text To Speech Model: tts-model.md
+
+
+# Customization
+extra:
+  manifest: "manifest.webmanifest"
+  social:
+    - icon: fontawesome/brands/github-alt
+      link: "https://github.com/geovannymcode"
+    - icon: fontawesome/brands/twitter
+      link: "https://twitter.com/geovannycode"
+    - icon: fontawesome/brands/linkedin
+      link: "https://www.linkedin.com/in/geovannycode/"
+
+# Extensions
+markdown_extensions:
+  - codehilite
+  - tables
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:pymdownx.emoji.twemoji
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+
+
+# Tables
+extra_javascript:
+  - https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js
+  - javascripts/tablesort.js
