@@ -20,7 +20,7 @@ El desarrollo de aplicaciones modernas requiere herramientas robustas y eficient
     - **Google Cloud SDK**: Instalado y configurado para interacciones con App Engine.
     - **gcloud CLI Tool**: Para manejar despliegues desde la terminal.
 
-## **Paso a paso basado en Spring Initializr**:
+## **Paso a paso basado en Spring Initializr**
 
 ![GeoLabs Kotlin GCP](./files/Imagen01.png "GeoLabs Kotlin GCP")
 

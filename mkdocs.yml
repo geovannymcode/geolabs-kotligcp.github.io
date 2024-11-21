@@ -15,7 +15,7 @@ theme:
 nav:
   - Home: index.md
   - Crear API REST: create_api_rest.md
-  #- Chat Model: chat-model.md
+  - Referncias: referencias.md
   #- Function Calling: chat-model-calling.md
   #- Image Model: image-model.md
   #- Multi Modality: multimodality.md
