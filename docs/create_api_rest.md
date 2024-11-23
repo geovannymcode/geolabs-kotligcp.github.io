@@ -215,17 +215,22 @@ INSERT INTO speakers (id, name, country) VALUES (nextval('speaker_id_seq'), 'Geo
 
 ## **Pruebas Locales con Postman**
 
-Utiliza Postman para probar los endpoints. Ejemplo:
+Utiliza Postman para probar los endpoints como se puede mostrar en la `Figura #1`. 
 
-- `GET /api/speakers`: Recupera todos los speakers.
-- `POST /api/speakers`: Crea un nuevo speaker con este JSON:
+![GeoLabs Kotlin GCP](./files/Imagen02.png "GeoLabs Kotlin GCP")
+<p align="center">
+  <strong>Figura # 1:</strong> Representación del Postman
+</p>
 
-```json
-{
-    "name": "John Doe",
-    "country": "USA"
-}
-```
 
-- `PUT /api/speakers/{id}`: Actualiza un speaker.
-- `DELETE /api/speakers/{id}`: Elimina un speaker.
+- Ejemplo:
+    - `GET /api/speakers`: Recupera todos los speakers.
+    - `POST /api/speakers`: Crea un nuevo speaker con este JSON:
+        ```json
+        {
+            "name": "John Doe",
+            "country": "USA"
+        }
+        ```
+    - `PUT /api/speakers/{id}`: Actualiza un speaker.
+    - `DELETE /api/speakers/{id}`: Elimina un speaker.
