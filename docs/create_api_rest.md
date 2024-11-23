@@ -28,28 +28,32 @@ src
  │       └── 📁 application.properties
 ```
 
-- Paquete principal (com.geovannycode): Contiene todas las clases de la aplicación: el punto de entrada (KotlinGcpApplication), la entidad (Speaker), la lógica de negocio (SpeakerService), el repositorio (SpeakerRepository) y el controlador REST (SpeakerController).
-- Directorio de recursos (resources):
-    - db/migration: Archivos SQL utilizados por Flyway para la creación y migración de datos.
-    - application.properties: Configuración de conexión a la base de datos.
+- **Paquete principal** (`com.geovannycode`): Contiene todas las clases de la aplicación: el punto de entrada (`KotlinGcpApplication`), la entidad (`Speaker`), la lógica de negocio (`SpeakerService`), el repositorio (`SpeakerRepository`) y el controlador REST (`SpeakerController`).
+- **Directorio de recursos** (`resources`):
+    - `db/migration`: Archivos SQL utilizados por Flyway para la creación y migración de datos.
+    - `application.properties`: Configuración de conexión a la base de datos.
 
-1. Implementación Técnica
-Punto de Entrada: KotlinGcpApplication.kt
+### **1. Implementación Técnica**
 
+Punto de Entrada: `KotlinGcpApplication.kt`
+
+```kotlin title="KotlinGcpApplication.kt" linenums="1"
 @SpringBootApplication
 class KotlinGcpApplication
 
 fun main(args: Array<String>) {
     runApplication<KotlinGcpApplication>(*args)
 }
+```
+
 Esta clase define el punto de entrada de la aplicación:
 
-@SpringBootApplication: Configura automáticamente los componentes de Spring (escaneo de clases, configuración de beans, y más).
-runApplication: Inicia la aplicación y el servidor embebido (Tomcat).
+- **Línea 1** `@SpringBootApplication`: Configura automáticamente los componentes de Spring (escaneo de clases, configuración de beans, y más).
+- **Línea 5** `runApplication`: Inicia la aplicación y el servidor embebido (Tomcat).
 
-Modelo de Datos: Speaker.kt
-kotlin
-Copiar código
+### **Modelo de Datos**: `Speaker.kt`
+
+```kotlin title="Speaker.kt" linenums="1"
 @Entity
 @Table(name = "speakers")
 data class Speaker(
@@ -60,30 +64,36 @@ data class Speaker(
     val name: String,
     val country: String
 )
-Este archivo define la estructura de la tabla speakers en la base de datos:
+```
 
-@Entity: Marca la clase como una entidad JPA, que mapea un registro de la tabla.
-@Table: Define el nombre de la tabla como speakers.
-Campos:
-id: Clave primaria generada automáticamente usando una secuencia PostgreSQL.
-name: Almacena el nombre del speaker.
-country: Almacena el país de origen del speaker.
-El uso de una data class de Kotlin facilita la inmutabilidad y proporciona métodos como copy().
+Este archivo define la estructura de la tabla `speakers` en la base de datos:
 
-Repositorio: SpeakerRepository.kt
-kotlin
-Copiar código
+- **Línea 1** `@Entity`: Marca la clase como una entidad JPA, que mapea un registro de la tabla.
+- **Línea 2** `@Table`: Define el nombre de la tabla como `speakers`.
+- **Campos**:
+    - `id`: Clave primaria generada automáticamente usando una secuencia PostgreSQL.
+    - `name`: Almacena el nombre del speaker.
+    - `country`: Almacena el país de origen del speaker.
+
+El uso de una `data class` de Kotlin facilita la inmutabilidad y proporciona métodos como `copy()`.
+
+### **Repositorio**: `SpeakerRepository.kt`
+
+```kotlin title="SpeakerRepository.kt" linenums="1"
 @Repository
 interface SpeakerRepository : CrudRepository<Speaker, Long>
-Este repositorio hereda de CrudRepository, proporcionando métodos como:
-findById: Busca un registro por su ID.
-findAll: Devuelve todos los registros.
-save: Guarda o actualiza un registro.
-deleteById: Elimina un registro por ID.
-Spring Data JPA se encarga de la implementación del repositorio, permitiéndonos enfocarnos en la lógica de negocio.
-Servicio: SpeakerService.kt
-kotlin
-Copiar código
+```
+
+- Este repositorio hereda de `CrudRepository`, proporcionando métodos como:
+    - **`findById`**: Busca un registro por su ID.
+    - **`findAll`**: Devuelve todos los registros.
+    - **`save`**: Guarda o actualiza un registro.
+    - **`deleteById`**: Elimina un registro por ID.
+- Spring Data JPA se encarga de la implementación del repositorio, permitiéndonos enfocarnos en la lógica de negocio.
+
+### **Servicio**: `SpeakerService.kt`
+
+```kotlin title="SpeakerRepository.kt" linenums="1"
 @Service
 @Transactional
 class SpeakerService(val repo: SpeakerRepository) {
@@ -100,17 +110,20 @@ class SpeakerService(val repo: SpeakerRepository) {
         }
     }
 }
-createSpeaker: Inserta un nuevo speaker en la base de datos.
-getSpeakers: Recupera todos los registros como una lista.
-getSpeaker: Busca un speaker por ID.
-updateSpeaker:
-Comprueba si el ID existe.
-Usa el método copy() para mantener la inmutabilidad de la entidad.
-Guarda el registro actualizado.
-deleteSpeaker: Elimina un registro.
-Controlador REST: SpeakerController.kt
-kotlin
-Copiar código
+```
+
+- **Línea 4** `getSpeakers`: Recupera todos los registros como una lista.
+- **Línea 5** `createSpeaker`: Inserta un nuevo speaker en la base de datos.
+- **Línea 6** `deleteSpeaker`: Elimina un registro.
+- **Línea 7** `getSpeaker`: Busca un speaker por ID.
+- **Línea 8** `updateSpeaker`:
+    - Comprueba si el ID existe.
+    - Usa el método `copy()` para mantener la inmutabilidad de la entidad.
+    - Guarda el registro actualizado.
+
+### **Controlador REST**: `SpeakerController.kt`
+
+```kotlin title="SpeakerController.kt" linenums="1"
 @RestController
 @RequestMapping("/api/speakers")
 class SpeakerController(private val service: SpeakerService) {
@@ -144,18 +157,23 @@ class SpeakerController(private val service: SpeakerService) {
         }
     }
 }
+```
+
 Este archivo expone los endpoints para interactuar con la API:
 
-GET /api/speakers: Recupera todos los speakers.
-POST /api/speakers: Crea un nuevo registro.
-GET /api/speakers/{id}: Devuelve un speaker por ID.
-PUT /api/speakers/{id}: Actualiza un registro existente.
-DELETE /api/speakers/{id}: Elimina un registro por ID.
-2. Configuración Local
-Base de Datos con Docker Compose
-Archivo docker-compose.yaml
-yaml
-Copiar código
+- **Línea 4** `GET /api/speakers`: Recupera todos los speakers.
+- **Línea 4** `POST /api/speakers`: Crea un nuevo registro.
+- **Línea 4** `GET /api/speakers/{id}`: Devuelve un speaker por ID.
+- **Línea 4** `PUT /api/speakers/{id}`: Actualiza un registro existente.
+- **Línea 4** `DELETE /api/speakers/{id}`: Elimina un registro por ID.
+
+## **2. Configuración Local**
+
+### **Base de Datos con Docker Compose**
+
+Archivo `docker-compose.yaml`
+
+```yaml title="docker-compose.yaml" linenums="1"
 services:
   postgres_gcp:
     container_name: "postgres_gcp"
@@ -167,17 +185,18 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: ${POSTGRES_DB}
-Asegúrate de configurar las variables en el archivo .env para personalizar los valores.
-Levanta el servicio con:
-bash
-Copiar código
-docker-compose up -d
-Migraciones con Flyway
+```
+
+- Asegúrate de configurar las variables en el archivo .env para personalizar los valores.
+- Con la incorporacion de Docker Support no hay necesidad de ejecutar el comando de docker para levantar el servicio, con ejecutar la aplicacion automaticamente se levanta el servicio de docker.
+
+## **Migraciones con Flyway**
+
 Flyway asegura la creación y migración de la base de datos.
 
-V1__Create_Speaker_Table.sql
-sql
-Copiar código
+Archivo `V1__Create_Speaker_Table.sql`
+
+```sql title="V1__Create_Speaker_Table.sql" linenums="1"
 CREATE SEQUENCE speaker_id_seq START 1 INCREMENT BY 50;
 
 CREATE TABLE speakers (
@@ -186,20 +205,27 @@ CREATE TABLE speakers (
     country VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
-V2__Add_Data_Speaker.sql
-sql
-Copiar código
+```
+
+Archivo `V2__Add_Data_Speaker.sql`
+
+```sql title="V2__Add_Data_Speaker.sql" linenums="1"
 INSERT INTO speakers (id, name, country) VALUES (nextval('speaker_id_seq'), 'Geovanny Mendoza', 'Colombia');
-3. Pruebas Locales con Postman
+```
+
+## **Pruebas Locales con Postman**
+
 Utiliza Postman para probar los endpoints. Ejemplo:
 
-GET /api/speakers: Recupera todos los speakers.
-POST /api/speakers: Crea un nuevo speaker con este JSON:
-json
-Copiar código
+- `GET /api/speakers`: Recupera todos los speakers.
+- `POST /api/speakers`: Crea un nuevo speaker con este JSON:
+
+```json
 {
     "name": "John Doe",
     "country": "USA"
 }
-PUT /api/speakers/{id}: Actualiza un speaker.
-DELETE /api/speakers/{id}: Elimina un speaker.
+```
+
+- `PUT /api/speakers/{id}`: Actualiza un speaker.
+- `DELETE /api/speakers/{id}`: Elimina un speaker.
