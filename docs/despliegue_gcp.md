@@ -315,6 +315,64 @@ gcloud app deploy
 https://famous-cursor-442219-q6.rj.r.appspot.com
 ```
 
-## **Conclusión**
+## **Proyecto Final**
 
-Hemos configurado y desplegado con éxito una aplicación Kotlin en Google Cloud, conectada a una base de datos PostgreSQL. En el próximo módulo, exploraremos cómo optimizar la seguridad y automatizar el proceso de despliegue.
+El proyecto completo desarrollado durante este workshop está disponible en el siguiente repositorio de GitHub:
+
+🔗 Proyecto Final: [kotlin-gcp](https://github.com/geovannymcode/kotlin-gcp){:target="_blank"}
+
+En este repositorio encontrarás todo el código fuente, configuraciones, y las instrucciones necesarias para ejecutar el proyecto tanto localmente como en Google Cloud.
+
+## **Sígueme en Redes Sociales**
+
+Si disfrutaste este workshop, ¡asegúrate de seguirme para más contenido sobre Kotlin, Spring Boot y desarrollo en la nube!
+
+- Web: [Geovanny Mendoza](https://geovannycode.com/){:target="_blank"}
+- GitHub: [@geovannymcode](https://github.com/geovannymcode){:target="_blank"}
+- Twitter: [@geovannycode](https://x.com/geovannycode){:target="_blank"}
+- LinkedIn: [Geovanny Mendoza](https://www.linkedin.com/in/geovannycode/){:target="_blank"}
+- YouTube: [Geovanny Mendoza](https://www.youtube.com/@geovannymendozagonzalez9119){:target="_blank"}
+
+## **Resumen del Workshop**
+
+En este workshop aprendimos a desplegar una API REST desarrollada en Kotlin y Spring Boot en Google Cloud. Estos son los pasos principales que seguimos:
+
+- **Fase 1: Configuración Inicial**
+    - Uso de Spring Initializr para generar un proyecto base.
+    - Configuración de dependencias clave como Spring Web y JPA.
+    - Creación de la estructura del proyecto.
+
+- **Fase 2: Construcción de la API REST**
+    - Implementación de entidades, repositorios, servicios y controladores.
+    - Uso de Flyway para la gestión de migraciones en la base de datos.
+
+- **Fase 3: Configuración de PostgreSQL en Cloud SQL**
+    - Creación de una instancia PostgreSQL en Google Cloud.
+    - Configuración de conexiones seguras y prueba local con DBeaver.
+
+- **Fase 4: Ejecución Local**
+    - Validación de endpoints usando Postman.
+    - Inserción y recuperación de datos en la base de datos.
+
+- **Fase 5: Preparación del Despliegue**
+    - Creación de los archivos .gcloudignore y app.yaml para App Engine.
+    - Configuración de Maven/Gradle para empaquetado de la aplicación.
+
+- **Fase 6: Despliegue en App Engine**
+    - Uso del comando gcloud app deploy para subir la aplicación.
+    - Verificación de que la API REST funciona en la URL proporcionada por Google Cloud.
+
+- **Fase 7: Seguridad y Mejores Prácticas**
+    - Eliminación de la IP pública para proteger la base de datos.
+    - Habilitación de Cloud SQL Admin API y configuración de cadenas seguras.
+    - Uso de Spring Cloud GCP para integraciones nativas con Google Cloud.
+
+- **Fase 8: Validación y Optimización**
+    - Configuración de credenciales locales para desarrollo seguro.
+    - Validación del funcionamiento de la API en producción y local.
+
+## **Resultado Final**
+
+Tras completar este workshop, tendrás una aplicación Kotlin desplegada en la nube, conectada a una base de datos segura, con las mejores prácticas implementadas para garantizar rendimiento y escalabilidad.
+
+¡Gracias por participar en este workshop! Si tienes dudas o necesitas más ayuda, no dudes en contactarme o dejar tus comentarios en mis redes sociales. 🎉
