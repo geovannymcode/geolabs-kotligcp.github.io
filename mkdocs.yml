@@ -16,7 +16,7 @@ nav:
   - Home: index.md
   - Crear API REST: create_api_rest.md
   - Integración con GCP: despliegue_gcp.md
-  - Referncias: referencias.md
+  - Referencias: referencias.md
 
 # Customization
 extra:
