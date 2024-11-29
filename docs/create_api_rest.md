@@ -247,7 +247,7 @@ Spring implementa automáticamente esta interfaz al detectar su definición dura
 
 El archivo `SpeakerService.kt` implementa la lógica de negocio para la API REST. Actúa como un intermediario entre el controlador y el repositorio, asegurando que las operaciones CRUD (`Crear, Leer, Actualizar y Eliminar`) se realicen de manera controlada.
 
-```kotlin title="SpeakerRepository.kt" linenums="1"
+```kotlin title="SpeakerService.kt" linenums="1"
 @Service
 @Transactional
 class SpeakerService(val repo: SpeakerRepository) {

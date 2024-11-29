@@ -1,6 +1,7 @@
 # **Despliegue de una API REST con Kotlin en Google Cloud con PostgreSQL**
 
-Introducción
+## **Introducción**
+
 El desarrollo y despliegue de aplicaciones modernas en la nube permite a los desarrolladores crear APIs robustas, escalables y seguras. En esta guía aprenderás a desplegar una API REST construida con Kotlin y Spring Boot en Google Cloud App Engine, con PostgreSQL como base de datos.
 
 Este proceso incluye la configuración de un proyecto en Google Cloud, la creación de una instancia de base de datos en Cloud SQL, y el despliegue de la aplicación en un entorno gestionado con soporte de escalabilidad automática. También integraremos herramientas como [Google Cloud SDK](https://cloud.google.com/sdk/docs/install?hl=es-419){:target="_blank"} para facilitar la gestión y despliegue de recursos.
@@ -151,6 +152,47 @@ Google Cloud SDK nos permitirá desplegar la aplicación desde la línea de coma
             ./google-cloud-sdk/bin/gcloud config list
         ```
 
+## **Configuración del archivo application.properties para conectarse a la base de datos**
+
+Antes de continuar, necesitamos ajustar las configuraciones para que nuestra aplicación pueda comunicarse correctamente con la base de datos que creamos en Google Cloud. Esto implica agregar la IP pública, el usuario y la contraseña asignados a la base.
+
+### **Modificación del archivo application.properties**
+
+Abrimos el archivo application.properties y configuramos las siguientes propiedades:
+
+```properties
+spring.datasource.url=jdbc:postgresql://34.171.125.70:5432/kotlindb
+spring.datasource.username=postgres
+spring.datasource.password=kotlingcp
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+```
+
+- `spring.datasource.url`: Especifica la URL de conexión, que incluye la IP pública de la instancia, el puerto (5432), y el nombre de la base de datos (`kotlindb`).
+- `spring.datasource.username`: Usuario para conectarse a la base (`postgres`).
+- `spring.datasource.password`: Contraseña para el usuario (`kotlingcp`).
+
+Si no recuerdas la IP pública o la contraseña, puedes consultar esta información desde el panel de Google Cloud SQL.
+
+## **Probando la conexión**
+
+Para verificar que todo está funcionando correctamente, ejecutamos el proyecto con el siguiente comando:
+
+```bash
+./gradlew bootRun
+```
+
+Esperamos a que compile y luego ingresamos en el navegador la URL correspondiente, por ejemplo:
+`http://localhost:8080/api/speakers`.
+
+Si la conexión a la base es exitosa, el resultado será un JSON vacío, indicando que no hay usuarios registrados todavía. Esto confirma que la aplicación está conectada a la base de datos, pero aún no hay registros.
+
+### **Preparando la aplicación para el despliegue en Google Cloud**
+
+Antes de desplegar nuestra aplicación, necesitamos realizar algunas configuraciones para garantizar que los archivos correctos sean enviados a Google Cloud. Esto es importante porque Google App Engine compila y ejecuta la aplicación directamente en la nube, por lo que ciertos archivos locales no deben incluirse en el proceso de despliegue.
+
+### **Creando el archivo .gcloudignore**
+
 Crea el archivo `.gcloudignore` para excluir carpetas y archivos innecesarios en el despliegue:
 
 ```text
@@ -169,14 +211,25 @@ mvnw
 mvnw.cmd
 ```
 
-- **Configurar App Engine**
-    - **Crear el archivo `app.yaml`**: Este archivo define las especificaciones del entorno donde se ejecutará la aplicación. Crea un archivo `app.yaml` en la raíz del proyecto con el siguiente contenido:
+### **Creando el descriptor app.yaml**
+
+Para que Google App Engine pueda desplegar correctamente nuestra aplicación, es necesario crear un archivo de configuración llamado app.yaml. Este archivo especifica las configuraciones básicas necesarias para el entorno de ejecución.
+
+- **Ubicación del archivo:**
+    Crea el archivo app.yaml en la raíz del proyecto.
+
+- **Contenido del archivo:**
+Dentro de este archivo, agrega las siguientes líneas:
+
 ```yaml
 runtime: java21
 instance_class: F2
 ```
-    - `runtime`: Especifica el entorno para aplicaciones Java.
-    - `instance_class`: Selecciona la clase de máquina. F2 es una opción equilibrada para aplicaciones Spring Boot.
+
+- `runtime`: Especifica el entorno para aplicaciones Java.
+- `instance_class`: Define el tipo de instancia. Google clasifica las instancias según su capacidad:
+    - `F1`: Instancia básica (por defecto).
+    - `F2`: Instancia con más recursos, recomendada para aplicaciones como Kotlin, que requieren mayor capacidad de procesamiento.
 
 - **Ejecutar el Despliegue**: 
     - Para desplegar la aplicación en `App Engine`, usa el siguiente comando:
@@ -187,7 +240,7 @@ instance_class: F2
         ```arduino
             https://famous-cursor-442219-q6.rj.r.appspot.com
         ```
-    - **Verificación**: Accede a la URL y asegúrate de que la aplicación esté funcionando correctamente. Por ejemplo, verifica los endpoints /speakers.
+    - **Verificación**: Accede a la URL y asegúrate de que la aplicación esté funcionando correctamente. Por ejemplo, verifica los endpoints `api/speakers`.
 
 ## **Paso 5: Habilitar la API de Cloud SQL Admin**
 
