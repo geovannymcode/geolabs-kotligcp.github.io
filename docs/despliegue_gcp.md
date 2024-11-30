@@ -322,11 +322,43 @@ spring.datasource.password=kotlinroot
             <strong>Figura # 19:</strong> Conexión Cloud SQL
         </p>
 
+### **Desplegar y verificar la conexión**
+
+Ahora podemos proceder con el despliegue y probar que la aplicación tiene conexión con la base de datos.
+
+- **Despliegue**:
+Ejecuta el siguiente comando en tu terminal:
+
+```bash
+gcloud app deploy
+```
+
+- **Esperar el proceso**:
+Deja que Google App Engine complete el despliegue. Este proceso puede tardar unos minutos.
+
+- **Obtener la URL**:
+Una vez finalizado, Google proporcionará una URL pública para tu aplicación.
+
+- **Verificación**:
+Accede a la URL proporcionada y dirígete al endpoint /speakers. Por ejemplo:
+
+```plaintext
+https://<tu-app-id>.appspot.com/speakers
+```
+
+Si todo está configurado correctamente, la aplicación debería mostrar datos o confirmar la conexión con la base de datos.
+
 ## **Paso 7: Configuración IAM y Despliegue**
 
 Asegúrate de que la cuenta de servicio predeterminada de App Engine tenga los roles necesarios para gestionar Cloud SQL:
 
 - **Configurar Credenciales Locales**
+    - Una vez que la aplicación está funcionando, podemos verificar su estado en la consola de administración de Google Cloud. Ahí veremos que existen varias cuentas creadas automáticamente. Una de estas cuentas es la predeterminada de App Engine, la cual tiene permisos necesarios para realizar diversas operaciones dentro de Google Cloud, siempre que se le hayan asignado los privilegios adecuados.
+
+    - Sin embargo, en el entorno local, no contamos con esa cuenta predeterminada o "aplicativa". Aunque tu cuenta personal puede haber creado el proyecto, esto no implica que automáticamente tenga los permisos necesarios para realizar ciertas operaciones desde tu entorno local.
+
+    - Para solucionar esto, es necesario configurar las credenciales en tu entorno local. Esto se hace mediante el siguiente comando:    
+    
     - Usa el siguiente comando para autenticar tu máquina local con las credenciales de Google Cloud:
 ```bash
 gcloud auth application-default login
@@ -350,23 +382,6 @@ Corre la aplicación localmente y verifica que se conecte correctamente a la bas
 ```
 
 Asegúrate de que el endpoint `/spearkes` funcione como se espera.
-
-- **Desplegar la Aplicación**
-    - Ejecuta el siguiente comando para desplegar: Después de los ajustes de seguridad, ejecuta nuevamente el despliegue
-```bash
-gcloud app deploy
-```
-
-    - Confirma que la aplicación se conecta correctamente a la base de datos y que los endpoints están funcionando.
-
-- **Validación de Conexión en la Nube**
-    - Usa herramientas como Postman o DBeaver para verificar que los datos de la base se gestionan correctamente desde la aplicación desplegada en la nube.
-
-- **Documentar la URL de Producción**
-    - Anota la URL final del proyecto, que será algo como:
-```arduino
-https://famous-cursor-442219-q6.rj.r.appspot.com
-```
 
 ## **Proyecto Final**
 
