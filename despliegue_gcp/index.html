@@ -1,0 +1,1349 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GeoLabs Kotlin-GCP Docs">
+      
+      
+        <meta name="author" content="Geovanny Mendoza">
+      
+      
+        <link rel="canonical" href="https://geovannymcode.github.io/geolabs-kotlingcp.github.io/despliegue_gcp/">
+      
+      
+        <link rel="prev" href="../create_api_rest/">
+      
+      
+        <link rel="next" href="../referencias/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Integración con GCP - GeoLabs Kotlin-GCP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#despliegue-de-una-api-rest-con-kotlin-en-google-cloud-con-postgresql" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="GeoLabs Kotlin-GCP" class="md-header__button md-logo" aria-label="GeoLabs Kotlin-GCP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GeoLabs Kotlin-GCP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Integración con GCP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://geovannymcode.github.io/geolabs-kotlingcp.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    /geovannymcode/geolabs-kotlingcp.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="GeoLabs Kotlin-GCP" class="md-nav__button md-logo" aria-label="GeoLabs Kotlin-GCP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GeoLabs Kotlin-GCP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://geovannymcode.github.io/geolabs-kotlingcp.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    /geovannymcode/geolabs-kotlingcp.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../create_api_rest/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Crear API REST
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Integración con GCP
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Integración con GCP
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducción
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-1-configuracion-del-proyecto-en-google-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 1: Configuración del Proyecto en Google Cloud
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-2-creacion-de-una-base-de-datos-en-cloud-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2: Creación de una Base de Datos en Cloud SQL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-3-configuracion-de-conexion-publica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3: Configuración de Conexión Pública
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-4-instalacion-y-configuracion-del-sdk-de-google-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4: Instalación y Configuración del SDK de Google Cloud
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-del-archivo-applicationproperties-para-conectarse-a-la-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del archivo application.properties para conectarse a la base de datos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuración del archivo application.properties para conectarse a la base de datos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modificacion-del-archivo-applicationproperties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modificación del archivo application.properties
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#probando-la-conexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probando la conexión
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Probando la conexión">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparando-la-aplicacion-para-el-despliegue-en-google-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparando la aplicación para el despliegue en Google Cloud
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creando-el-archivo-gcloudignore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creando el archivo .gcloudignore
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creando-el-descriptor-appyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creando el descriptor app.yaml
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-5-habilitar-la-api-de-cloud-sql-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 5: Habilitar la API de Cloud SQL Admin
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-6-configuracion-de-dependencias-en-el-proyecto-kotlin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 6: Configuración de Dependencias en el Proyecto Kotlin
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 6: Configuración de Dependencias en el Proyecto Kotlin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#desplegar-y-verificar-la-conexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Desplegar y verificar la conexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-7-configuracion-iam-y-despliegue" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 7: Configuración IAM y Despliegue
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proyecto-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proyecto Final
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sigueme-en-redes-sociales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sígueme en Redes Sociales
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-del-workshop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen del Workshop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultado-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resultado Final
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../referencias/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Referencias
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduccion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducción
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-1-configuracion-del-proyecto-en-google-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 1: Configuración del Proyecto en Google Cloud
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-2-creacion-de-una-base-de-datos-en-cloud-sql" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 2: Creación de una Base de Datos en Cloud SQL
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-3-configuracion-de-conexion-publica" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 3: Configuración de Conexión Pública
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-4-instalacion-y-configuracion-del-sdk-de-google-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 4: Instalación y Configuración del SDK de Google Cloud
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#configuracion-del-archivo-applicationproperties-para-conectarse-a-la-base-de-datos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Configuración del archivo application.properties para conectarse a la base de datos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Configuración del archivo application.properties para conectarse a la base de datos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modificacion-del-archivo-applicationproperties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Modificación del archivo application.properties
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#probando-la-conexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probando la conexión
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Probando la conexión">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preparando-la-aplicacion-para-el-despliegue-en-google-cloud" class="md-nav__link">
+    <span class="md-ellipsis">
+      Preparando la aplicación para el despliegue en Google Cloud
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creando-el-archivo-gcloudignore" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creando el archivo .gcloudignore
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#creando-el-descriptor-appyaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creando el descriptor app.yaml
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-5-habilitar-la-api-de-cloud-sql-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 5: Habilitar la API de Cloud SQL Admin
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-6-configuracion-de-dependencias-en-el-proyecto-kotlin" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 6: Configuración de Dependencias en el Proyecto Kotlin
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Paso 6: Configuración de Dependencias en el Proyecto Kotlin">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#desplegar-y-verificar-la-conexion" class="md-nav__link">
+    <span class="md-ellipsis">
+      Desplegar y verificar la conexión
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#paso-7-configuracion-iam-y-despliegue" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paso 7: Configuración IAM y Despliegue
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#proyecto-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      Proyecto Final
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sigueme-en-redes-sociales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sígueme en Redes Sociales
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resumen-del-workshop" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resumen del Workshop
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resultado-final" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resultado Final
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="despliegue-de-una-api-rest-con-kotlin-en-google-cloud-con-postgresql"><strong>Despliegue de una API REST con Kotlin en Google Cloud con PostgreSQL</strong></h1>
+<h2 id="introduccion"><strong>Introducción</strong></h2>
+<p>El desarrollo y despliegue de aplicaciones modernas en la nube permite a los desarrolladores crear APIs robustas, escalables y seguras. En esta guía aprenderás a desplegar una API REST construida con Kotlin y Spring Boot en Google Cloud App Engine, con PostgreSQL como base de datos.</p>
+<p>Este proceso incluye la configuración de un proyecto en Google Cloud, la creación de una instancia de base de datos en Cloud SQL, y el despliegue de la aplicación en un entorno gestionado con soporte de escalabilidad automática. También integraremos herramientas como <a href="https://cloud.google.com/sdk/docs/install?hl=es-419" target="_blank">Google Cloud SDK</a> para facilitar la gestión y despliegue de recursos.</p>
+<h2 id="paso-1-configuracion-del-proyecto-en-google-cloud"><strong>Paso 1: Configuración del Proyecto en Google Cloud</strong></h2>
+<ol>
+<li><strong>Creación de un Proyecto en Google Cloud</strong></li>
+</ol>
+<p>Antes de iniciar, asegúrate de haber iniciado sesión en tu cuenta de <strong>Google Cloud</strong>.</p>
+<ul>
+<li>En el panel principal de Google Cloud, selecciona la opción <strong>"Nuevo Proyecto"</strong> como se muestra en la <strong>Figura #1</strong>:
+<img alt="GeoLabs Kotlin GCP" src="../files/Imagen04.png" title="GeoLabs Kotlin GCP" /></li>
+</ul>
+<p align="center">
+  <strong>Figura # 1:</strong> Nuevo Proyecto
+</p>
+<ul>
+<li>En la pantalla emergente, asigna un nombre al proyecto, por ejemplo, <code>demo-kotlin-gcp</code>, y presiona el botón <strong><code>Crear</code></strong> (<strong>ver Figura #2</strong>):
+<img alt="GeoLabs Kotlin GCP" src="../files/Imagen05.png" title="GeoLabs Kotlin GCP" /></li>
+</ul>
+<p align="center">
+  <strong>Figura # 2:</strong> Nombre al proyecto
+</p>
+<ul>
+<li>Una vez creado el proyecto, selecciona el proyecto desde las notificaciones o el menú desplegable (<strong>ver Figura #3</strong>):
+<img alt="GeoLabs Kotlin GCP" src="../files/Imagen06.png" title="GeoLabs Kotlin GCP" /></li>
+</ul>
+<p align="center">
+  <strong>Figura # 3:</strong> Notificación del proyecto
+</p>
+
+<h2 id="paso-2-creacion-de-una-base-de-datos-en-cloud-sql"><strong>Paso 2:  Creación de una Base de Datos en Cloud SQL</strong></h2>
+<ol>
+<li><strong>Configuración de la Instancia</strong></li>
+</ol>
+<p>Desde el menú lateral de Google Cloud, selecciona la opción <strong>SQL</strong> para acceder a la sección de bases de datos (<strong>ver Figura #4</strong>):
+<img alt="GeoLabs Kotlin GCP" src="../files/Imagen07.png" title="GeoLabs Kotlin GCP" /></p>
+<p align="center">
+  <strong>Figura # 4:</strong> Bases de Datos
+</p>
+
+<ul>
+<li>Haz clic en <strong>Crear Instancia</strong> con <em>Créditos Gratuitos</em> para iniciar el proceso de creación (<strong>ver Figura #5</strong>):
+<img alt="GeoLabs Kotlin GCP" src="../files/Imagen08.png" title="GeoLabs Kotlin GCP" /></li>
+</ul>
+<p align="center">
+  <strong>Figura # 5:</strong> Crear Instancia
+</p>
+
+<ul>
+<li>Selecciona <strong>PostgreSQL</strong> como el motor de base de datos para la instancia (<strong>ver Figura #6</strong>):
+<img alt="GeoLabs Kotlin GCP" src="../files/Imagen09.png" title="GeoLabs Kotlin GCP" /></li>
+</ul>
+<p align="center">
+  <strong>Figura # 6:</strong> Seleccionar PostgreSQL
+</p>
+
+<ul>
+<li>Configura los parámetros iniciales de la instancia:<ul>
+<li><strong>Ajuste predeterminado de edición</strong>: Zona de pruebas.</li>
+<li><strong>Versión de la base de datos</strong>: PostgreSQL 16.</li>
+<li><strong>ID de la instancia</strong>: kotlinbase.</li>
+<li><strong>Contraseña</strong>: kotlinroot.</li>
+<li><strong>Región</strong>: Selecciona una cercana como us-central1.</li>
+<li><strong>Disponibilidad zonal</strong>: Zona única (<strong>ver Figura #7</strong>):
+<img alt="GeoLabs Kotlin GCP" src="../files/Imagen11.png" title="GeoLabs Kotlin GCP" /></li>
+</ul>
+</li>
+</ul>
+<p align="center">
+  <strong>Figura # 7:</strong> Parámetros de la instancia
+</p>
+<ul>
+<li>Personaliza los recursos de la máquina para optimizar costos. Selecciona la opción <strong>Con núcleo compartido</strong> con 1 CPU virtual (<strong>ver Figura #8</strong>):
+<img alt="GeoLabs Kotlin GCP" src="../files/Imagen12.png" title="GeoLabs Kotlin GCP" /></li>
+</ul>
+<p align="center">
+  <strong>Figura # 8:</strong> Personaliza Instancia
+</p>
+<ul>
+<li>Haz clic en <strong>Crear</strong> para finalizar la configuración (<strong>ver Figura #9</strong>):.
+<img alt="GeoLabs Kotlin GCP" src="../files/Imagen13.png" title="GeoLabs Kotlin GCP" /></li>
+</ul>
+<p align="center">
+  <strong>Figura # 9:</strong> Crear Instancia
+</p>
+
+<ul>
+<li><strong>Crear una Base de Datos</strong>:</li>
+<li>Una vez creada la instancia, accede a la pestaña <strong>Bases de Datos</strong> y haz clic en <strong>Crear Base de Datos</strong>. (<strong>Figura #10</strong>).
+<img alt="GeoLabs Kotlin GCP" src="../files/Imagen15.png" title="GeoLabs Kotlin GCP" /></li>
+</ul>
+<p align="center">
+  <strong>Figura # 10:</strong> Base de Datos
+</p>
+<ul>
+<li>Asigna un nombre, como <code>kotlindb</code>. y presionar el boton <strong>Crear</strong> (<strong>Figura #11</strong>). 
+<img alt="GeoLabs Kotlin GCP" src="../files/Imagen16.png" title="GeoLabs Kotlin GCP" /></li>
+</ul>
+<p align="center">
+  <strong>Figura # 11:</strong> Crear Base de Datos
+</p>
+
+<h2 id="paso-3-configuracion-de-conexion-publica"><strong>Paso 3: Configuración de Conexión Pública</strong></h2>
+<p>En este paso, configuraremos el acceso público para la base de datos PostgreSQL en Google Cloud SQL. Esto permitirá conectar herramientas locales como DBeaver para verificar y gestionar los datos.</p>
+<ul>
+<li><strong>Habilitar la Conexión Pública</strong></li>
+<li>Accede a la instancia de la base de datos PostgreSQL en la consola de Google Cloud.</li>
+<li>Navega a la sección <strong>Conexiones</strong> en el menú lateral (<strong>Ver Figura #12</strong>).
+<img alt="GeoLabs Kotlin GCP" src="../files/Imagen17.png" title="GeoLabs Kotlin GCP" /></li>
+</ul>
+<p align="center">
+  <strong>Figura # 12:</strong> Conexión
+</p>
+<ul>
+<li>En la pestaña <strong>Redes</strong>, marca la opción <strong>IP Pública</strong> para habilitar conexiones externas.</li>
+<li>
+<p>Haz clic en <strong>Agregar una Red</strong> para configurar redes autorizadas.</p>
+</li>
+<li>
+<p><strong>Configurar la Red Permitida</strong></p>
+<ul>
+<li>En la ventana emergente, completa los siguientes campos (<strong>Ver Figura #13</strong>):<ul>
+<li><strong>Nombre</strong>: Ingresa un nombre descriptivo, como <code>abierta</code>.</li>
+<li><strong>Red</strong>: Introduce <code>0.0.0.0/0</code> para permitir conexiones desde cualquier dirección IP.
+<img alt="GeoLabs Kotlin GCP" src="../files/Imagen18.png" title="GeoLabs Kotlin GCP" /></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p align="center">
+  <strong>Figura # 12:</strong> Agregar Red
+</p>
+<ul>
+<li>Haz clic en <strong>Guardar</strong> para aplicar los cambios.</li>
+</ul>
+<p>⚠️ <strong>Advertencia</strong>: Esta configuración permite conexiones desde cualquier lugar y puede ser un riesgo de seguridad. Se recomienda usar esta configuración solo en entornos de desarrollo.</p>
+<ul>
+<li><strong>Probar la Conexión con DBeaver</strong><ul>
+<li>Abre <strong>DBeaver</strong> (o cualquier cliente de base de datos).</li>
+<li>Crea una nueva conexión seleccionando <strong>PostgreSQL</strong> como tipo de base de datos.</li>
+<li>Completa los campos con los detalles obtenidos de la instancia:<ul>
+<li><strong>Host</strong>: IP pública de la instancia (disponible en la consola de Google Cloud).</li>
+<li><strong>Puerto</strong>: <code>5432</code>.</li>
+<li><strong>Usuario</strong>: <code>postgres</code>.</li>
+<li><strong>Contraseña</strong>: La configurada previamente (<code>kotlinroot</code> en este ejemplo).</li>
+</ul>
+</li>
+<li>Haz clic en <strong>Probar conexión</strong> para confirmar que todo funciona correctamente (<strong>Ver Figura #14</strong>).
+    <img alt="GeoLabs Kotlin GCP" src="../files/Imagen19.png" title="GeoLabs Kotlin GCP" />
+        <p align="center">
+            <strong>Figura # 14:</strong> Probar Conexión
+        </p></li>
+</ul>
+</li>
+</ul>
+<h2 id="paso-4-instalacion-y-configuracion-del-sdk-de-google-cloud"><strong>Paso 4: Instalación y Configuración del SDK de Google Cloud</strong></h2>
+<p>Google Cloud SDK nos permitirá desplegar la aplicación desde la línea de comandos.</p>
+<ul>
+<li>
+<p><strong>Descargar e Instalar el SDK</strong></p>
+<ul>
+<li>Ve a la <a href="https://cloud.google.com/sdk/docs/install?hl=es-419">página oficial del SDK de Google Cloud</a>.</li>
+<li>Descarga la versión para tu sistema operativo y sigue las instrucciones de instalación.</li>
+<li>Ejecuta el comando <code>./google-cloud-sdk/bin/gcloud init</code> en tu terminal para configurar el SDK.<ul>
+<li>Acepta las configuraciones predeterminadas y selecciona el proyecto en el que trabajas (<strong>Ver Figura #15</strong>).
+<img alt="GeoLabs Kotlin GCP" src="../files/Imagen20.png" title="GeoLabs Kotlin GCP" />
+<p align="center">
+    <strong>Figura # 15:</strong> Condiguración del SDK Google Cloud
+</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Seleccionar el Proyecto</strong></p>
+<ul>
+<li>Durante la configuración del SDK, selecciona el proyecto en el que se creó la base de datos.</li>
+<li>
+<p>Confirma el proyecto elegido con el identificador correspondiente (<strong>Ver Figura #16</strong>).
+<img alt="GeoLabs Kotlin GCP" src="../files/Imagen21.png" title="GeoLabs Kotlin GCP" />
+    <p align="center">
+        <strong>Figura # 16:</strong> Selección del Proyecto
+    </p></p>
+</li>
+<li>
+<p>Sigue los pasos interactivos para autenticarte y vincular el proyecto <code>kotlingcp</code>.</p>
+</li>
+<li>Puedes listar la configuración actual del proyecto con:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">    </span>./google-cloud-sdk/bin/gcloud<span class="w"> </span>config<span class="w"> </span>list
+</span></code></pre></div></li>
+</ul>
+</li>
+</ul>
+<h2 id="configuracion-del-archivo-applicationproperties-para-conectarse-a-la-base-de-datos"><strong>Configuración del archivo application.properties para conectarse a la base de datos</strong></h2>
+<p>Antes de continuar, necesitamos ajustar las configuraciones para que nuestra aplicación pueda comunicarse correctamente con la base de datos que creamos en Google Cloud. Esto implica agregar la IP pública, el usuario y la contraseña asignados a la base.</p>
+<h3 id="modificacion-del-archivo-applicationproperties"><strong>Modificación del archivo application.properties</strong></h3>
+<p>Abrimos el archivo application.properties y configuramos las siguientes propiedades:</p>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="na">spring.datasource.url</span><span class="o">=</span><span class="s">jdbc:postgresql://34.171.125.70:5432/kotlindb</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="na">spring.datasource.username</span><span class="o">=</span><span class="s">postgres</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="na">spring.datasource.password</span><span class="o">=</span><span class="s">kotlingcp</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="na">spring.jpa.hibernate.ddl-auto</span><span class="o">=</span><span class="s">update</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="na">spring.jpa.database-platform</span><span class="o">=</span><span class="s">org.hibernate.dialect.PostgreSQLDialect</span>
+</span></code></pre></div>
+<ul>
+<li><code>spring.datasource.url</code>: Especifica la URL de conexión, que incluye la IP pública de la instancia, el puerto (5432), y el nombre de la base de datos (<code>kotlindb</code>).</li>
+<li><code>spring.datasource.username</code>: Usuario para conectarse a la base (<code>postgres</code>).</li>
+<li><code>spring.datasource.password</code>: Contraseña para el usuario (<code>kotlingcp</code>).</li>
+</ul>
+<p>Si no recuerdas la IP pública o la contraseña, puedes consultar esta información desde el panel de Google Cloud SQL.</p>
+<h2 id="probando-la-conexion"><strong>Probando la conexión</strong></h2>
+<p>Para verificar que todo está funcionando correctamente, ejecutamos el proyecto con el siguiente comando:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>./gradlew<span class="w"> </span>bootRun
+</span></code></pre></div>
+<p>Esperamos a que compile y luego ingresamos en el navegador la URL correspondiente, por ejemplo:
+<code>http://localhost:8080/api/speakers</code>.</p>
+<p>Si la conexión a la base es exitosa, el resultado será un JSON vacío, indicando que no hay usuarios registrados todavía. Esto confirma que la aplicación está conectada a la base de datos, pero aún no hay registros.</p>
+<h3 id="preparando-la-aplicacion-para-el-despliegue-en-google-cloud"><strong>Preparando la aplicación para el despliegue en Google Cloud</strong></h3>
+<p>Antes de desplegar nuestra aplicación, necesitamos realizar algunas configuraciones para garantizar que los archivos correctos sean enviados a Google Cloud. Esto es importante porque Google App Engine compila y ejecuta la aplicación directamente en la nube, por lo que ciertos archivos locales no deben incluirse en el proceso de despliegue.</p>
+<h3 id="creando-el-archivo-gcloudignore"><strong>Creando el archivo .gcloudignore</strong></h3>
+<p>Crea el archivo <code>.gcloudignore</code> para excluir carpetas y archivos innecesarios en el despliegue:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>.gradle/
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>build/
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>out/
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>gradlew
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>gradlew.bat
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>target/
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>.git/
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>.idea/
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>*.iml
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>.mvn/
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>mvnw
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>mvnw.cmd
+</span></code></pre></div>
+<h3 id="creando-el-descriptor-appyaml"><strong>Creando el descriptor app.yaml</strong></h3>
+<p>Para que Google App Engine pueda desplegar correctamente nuestra aplicación, es necesario crear un archivo de configuración llamado app.yaml. Este archivo especifica las configuraciones básicas necesarias para el entorno de ejecución.</p>
+<ul>
+<li>
+<p><strong>Ubicación del archivo:</strong>
+    Crea el archivo app.yaml en la raíz del proyecto.</p>
+</li>
+<li>
+<p><strong>Contenido del archivo:</strong>
+Dentro de este archivo, agrega las siguientes líneas:</p>
+</li>
+</ul>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nt">runtime</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">java21</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="nt">instance_class</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">F2</span>
+</span></code></pre></div>
+<ul>
+<li><code>runtime</code>: Especifica el entorno para aplicaciones Java.</li>
+<li>
+<p><code>instance_class</code>: Define el tipo de instancia. Google clasifica las instancias según su capacidad:</p>
+<ul>
+<li><code>F1</code>: Instancia básica (por defecto).</li>
+<li><code>F2</code>: Instancia con más recursos, recomendada para aplicaciones como Kotlin, que requieren mayor capacidad de procesamiento.</li>
+</ul>
+</li>
+<li>
+<p><strong>Ejecutar el Despliegue</strong>: </p>
+<ul>
+<li>Para desplegar la aplicación en <code>App Engine</code>, usa el siguiente comando:
+    <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="w">    </span>gcloud<span class="w"> </span>app<span class="w"> </span>deploy
+</span></code></pre></div></li>
+<li>Selecciona la región más cercana a tu ubicación (como <code>us-central1</code> para América Central) si es tu primer despliegue. Una vez completado, obtendrás una URL similar a:
+    <div class="language-arduino highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="w">    </span><span class="nl">https</span><span class="p">:</span><span class="c1">//famous-cursor-442219-q6.rj.r.appspot.com</span>
+</span></code></pre></div></li>
+<li><strong>Verificación</strong>: Accede a la URL y asegúrate de que la aplicación esté funcionando correctamente. Por ejemplo, verifica los endpoints <code>api/speakers</code>.</li>
+</ul>
+</li>
+</ul>
+<h2 id="paso-5-habilitar-la-api-de-cloud-sql-admin"><strong>Paso 5: Habilitar la API de Cloud SQL Admin</strong></h2>
+<ul>
+<li>
+<p><strong>Mejorar la Seguridad de la Aplicación</strong>
+Después del despliegue inicial, es importante fortalecer la seguridad.</p>
+</li>
+<li>
+<p><strong>Eliminar la IP Pública</strong></p>
+<ul>
+<li>Ve a la consola de <strong>Google Cloud SQL</strong>.</li>
+<li>En la sección Conexiones &gt; <strong>Redes</strong>, elimina la red pública <code>0.0.0.0/0</code>.</li>
+<li>Esto impedirá el acceso desde cualquier IP pública. (<strong>Ver Figura #17</strong>)
+<img alt="GeoLabs Kotlin GCP" src="../files/Imagen22.png" title="GeoLabs Kotlin GCP" />
+    <p align="center">
+        <strong>Figura # 17:</strong> Eliminar IP Publica
+    </p></li>
+</ul>
+</li>
+</ul>
+<p>Para realizar una conexión segura con la base de datos, habilitaremos la API Cloud SQL Admin, que permite gestionar instancias de bases de datos desde aplicaciones desplegadas en Google Cloud.</p>
+<ul>
+<li><strong>Activar la API</strong><ul>
+<li>En la consola de Google Cloud, busca <strong>Cloud SQL Admin API</strong> en el buscador de la parte superior.</li>
+<li>Haz clic en <strong>Habilitar</strong> para activar la API (<strong>Ver Figura #17</strong>).</li>
+</ul>
+</li>
+</ul>
+<p><img alt="GeoLabs Kotlin GCP" src="../files/Imagen23.png" title="GeoLabs Kotlin GCP" />
+        <p align="center">
+            <strong>Figura # 17:</strong> Activar API
+        </p></p>
+<p>Esto permitirá a las cuentas de servicio de Google gestionar conexiones a la base de datos de manera segura.</p>
+<h2 id="paso-6-configuracion-de-dependencias-en-el-proyecto-kotlin"><strong>Paso 6: Configuración de Dependencias en el Proyecto Kotlin</strong></h2>
+<p>En este paso, ajustaremos las dependencias necesarias para conectar nuestra aplicación a Cloud SQL.
+En lugar de usar la IP pública, configura la conexión usando cadenas seguras proporcionadas por Google.</p>
+<ul>
+<li><strong>Agregar la Dependencia de PostgreSQL</strong><ul>
+<li>Abre el archivo <code>pom.xml</code> de tu proyecto.</li>
+<li>Agrega la dependencia correspondiente para usar PostgreSQL con Google Cloud:</li>
+</ul>
+</li>
+</ul>
+<div class="language-xml highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nt">&lt;dependency&gt;</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">    </span><span class="nt">&lt;groupId&gt;</span>com.google.cloud<span class="nt">&lt;/groupId&gt;</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="nt">&lt;artifactId&gt;</span>spring-cloud-gcp-starter-sql-postgresql<span class="nt">&lt;/artifactId&gt;</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nt">&lt;/dependency&gt;</span>
+</span></code></pre></div>
+<p>Si usas <code>Gradle</code>, agrega lo siguiente en tu archivo <code>build.gradle</code>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>implementation(&quot;com.google.cloud:spring-cloud-gcp-starter-sql-postgresql&quot;)
+</span></code></pre></div>
+<p>(<strong>Ver Figura #18</strong>)
+<img alt="GeoLabs Kotlin GCP" src="../files/Imagen24.png" title="GeoLabs Kotlin GCP" />
+        <p align="center">
+            <strong>Figura # 18:</strong> Adicionar Dependencia
+        </p></p>
+<ul>
+<li><strong>Configurar la Cadena de Conexión</strong>
+Modifica las propiedades de conexión de la base de datos. En lugar de una URL con IP, usa la configuración proporcionada por Google:<ul>
+<li>Accede a las propiedades de tu aplicación (<code>application.properties</code> o <code>application.yml</code>).</li>
+<li>Configura los valores de conexión utilizando el nombre de la conexión (disponible en la consola de Google Cloud en la instancia de PostgreSQL) (<strong>Ver Figura #19</strong>):</li>
+</ul>
+</li>
+</ul>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># Configuración de conexión segura</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="na">spring.cloud.gcp.sql.database-name</span><span class="o">=</span><span class="s">kotlindb</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="na">spring.cloud.gcp.sql.instance-connection-name</span><span class="o">=</span><span class="s">famous-cursor-442219-q6:us-central1:kotlinbase</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="na">spring.datasource.username</span><span class="o">=</span><span class="s">postgres</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="na">spring.datasource.password</span><span class="o">=</span><span class="s">kotlinroot</span>
+</span></code></pre></div>
+<p><strong>Nota</strong>: Comenta cualquier configuración previa de URL para evitar conflictos:</p>
+<div class="language-properties highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># spring.datasource.url=jdbc:postgresql://&lt;IP_PUBLICA&gt;:5432/kotlindb</span>
+</span></code></pre></div>
+<p><img alt="GeoLabs Kotlin GCP" src="../files/Imagen25.png" title="GeoLabs Kotlin GCP" />
+        <p align="center">
+            <strong>Figura # 19:</strong> Conexión Cloud SQL
+        </p></p>
+<h3 id="desplegar-y-verificar-la-conexion"><strong>Desplegar y verificar la conexión</strong></h3>
+<p>Ahora podemos proceder con el despliegue y probar que la aplicación tiene conexión con la base de datos.</p>
+<ul>
+<li><strong>Despliegue</strong>:
+Ejecuta el siguiente comando en tu terminal:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>gcloud<span class="w"> </span>app<span class="w"> </span>deploy
+</span></code></pre></div>
+<ul>
+<li>
+<p><strong>Esperar el proceso</strong>:
+Deja que Google App Engine complete el despliegue. Este proceso puede tardar unos minutos.</p>
+</li>
+<li>
+<p><strong>Obtener la URL</strong>:
+Una vez finalizado, Google proporcionará una URL pública para tu aplicación.</p>
+</li>
+<li>
+<p><strong>Verificación</strong>:
+Accede a la URL proporcionada y dirígete al endpoint /speakers. Por ejemplo:</p>
+</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>https://&lt;tu-app-id&gt;.appspot.com/speakers
+</span></code></pre></div>
+<p>Si todo está configurado correctamente, la aplicación debería mostrar datos o confirmar la conexión con la base de datos.</p>
+<h2 id="paso-7-configuracion-iam-y-despliegue"><strong>Paso 7: Configuración IAM y Despliegue</strong></h2>
+<p>Asegúrate de que la cuenta de servicio predeterminada de App Engine tenga los roles necesarios para gestionar Cloud SQL:</p>
+<ul>
+<li>
+<p><strong>Configurar Credenciales Locales</strong></p>
+<ul>
+<li>
+<p>Una vez que la aplicación está funcionando, podemos verificar su estado en la consola de administración de Google Cloud. Ahí veremos que existen varias cuentas creadas automáticamente. Una de estas cuentas es la predeterminada de App Engine, la cual tiene permisos necesarios para realizar diversas operaciones dentro de Google Cloud, siempre que se le hayan asignado los privilegios adecuados.</p>
+</li>
+<li>
+<p>Sin embargo, en el entorno local, no contamos con esa cuenta predeterminada o "aplicativa". Aunque tu cuenta personal puede haber creado el proyecto, esto no implica que automáticamente tenga los permisos necesarios para realizar ciertas operaciones desde tu entorno local.</p>
+</li>
+<li>
+<p>Para solucionar esto, es necesario configurar las credenciales en tu entorno local. Esto se hace mediante el siguiente comando:    </p>
+</li>
+<li>
+<p>Usa el siguiente comando para autenticar tu máquina local con las credenciales de Google Cloud:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>gcloud<span class="w"> </span>auth<span class="w"> </span>application-default<span class="w"> </span>login
+</span></code></pre></div></p>
+</li>
+<li>
+<p>Esto abrirá el navegador para seleccionar tu cuenta de Google Cloud.</p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Revisar Cuentas de Servicio</strong></p>
+<ul>
+<li>Verifica que la cuenta de servicio predeterminada de <code>App Engine</code> tenga permisos de acceso a Cloud SQL (<strong>Ver Figura #20</strong>).</li>
+</ul>
+</li>
+</ul>
+<p><img alt="GeoLabs Kotlin GCP" src="../files/Imagen26.png" title="GeoLabs Kotlin GCP" />
+        <p align="center">
+            <strong>Figura # 20:</strong> IAM
+        </p></p>
+<ul>
+<li><strong>Probar la Aplicación Localmente</strong>
+Corre la aplicación localmente y verifica que se conecte correctamente a la base de datos:</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>./gradlew<span class="w"> </span>bootRun
+</span></code></pre></div>
+<p>Asegúrate de que el endpoint <code>/spearkes</code> funcione como se espera.</p>
+<h2 id="proyecto-final"><strong>Proyecto Final</strong></h2>
+<p>El proyecto completo desarrollado durante este workshop está disponible en el siguiente repositorio de GitHub:</p>
+<p>🔗 Proyecto Final: <a href="https://github.com/geovannymcode/kotlin-gcp" target="_blank">kotlin-gcp</a></p>
+<p>En este repositorio encontrarás todo el código fuente, configuraciones, y las instrucciones necesarias para ejecutar el proyecto tanto localmente como en Google Cloud.</p>
+<h2 id="sigueme-en-redes-sociales"><strong>Sígueme en Redes Sociales</strong></h2>
+<p>Si disfrutaste este workshop, ¡asegúrate de seguirme para más contenido sobre Kotlin, Spring Boot y desarrollo en la nube!</p>
+<ul>
+<li>Web: <a href="https://geovannycode.com/" target="_blank">Geovanny Mendoza</a></li>
+<li>GitHub: <a href="https://github.com/geovannymcode" target="_blank">@geovannymcode</a></li>
+<li>Twitter: <a href="https://x.com/geovannycode" target="_blank">@geovannycode</a></li>
+<li>LinkedIn: <a href="https://www.linkedin.com/in/geovannycode/" target="_blank">Geovanny Mendoza</a></li>
+<li>YouTube: <a href="https://www.youtube.com/@geovannymendozagonzalez9119" target="_blank">Geovanny Mendoza</a></li>
+</ul>
+<h2 id="resumen-del-workshop"><strong>Resumen del Workshop</strong></h2>
+<p>En este workshop aprendimos a desplegar una API REST desarrollada en Kotlin y Spring Boot en Google Cloud. Estos son los pasos principales que seguimos:</p>
+<ul>
+<li>
+<p><strong>Fase 1: Configuración Inicial</strong></p>
+<ul>
+<li>Uso de Spring Initializr para generar un proyecto base.</li>
+<li>Configuración de dependencias clave como Spring Web y JPA.</li>
+<li>Creación de la estructura del proyecto.</li>
+</ul>
+</li>
+<li>
+<p><strong>Fase 2: Construcción de la API REST</strong></p>
+<ul>
+<li>Implementación de entidades, repositorios, servicios y controladores.</li>
+<li>Uso de Flyway para la gestión de migraciones en la base de datos.</li>
+</ul>
+</li>
+<li>
+<p><strong>Fase 3: Configuración de PostgreSQL en Cloud SQL</strong></p>
+<ul>
+<li>Creación de una instancia PostgreSQL en Google Cloud.</li>
+<li>Configuración de conexiones seguras y prueba local con DBeaver.</li>
+</ul>
+</li>
+<li>
+<p><strong>Fase 4: Ejecución Local</strong></p>
+<ul>
+<li>Validación de endpoints usando Postman.</li>
+<li>Inserción y recuperación de datos en la base de datos.</li>
+</ul>
+</li>
+<li>
+<p><strong>Fase 5: Preparación del Despliegue</strong></p>
+<ul>
+<li>Creación de los archivos .gcloudignore y app.yaml para App Engine.</li>
+<li>Configuración de Maven/Gradle para empaquetado de la aplicación.</li>
+</ul>
+</li>
+<li>
+<p><strong>Fase 6: Despliegue en App Engine</strong></p>
+<ul>
+<li>Uso del comando gcloud app deploy para subir la aplicación.</li>
+<li>Verificación de que la API REST funciona en la URL proporcionada por Google Cloud.</li>
+</ul>
+</li>
+<li>
+<p><strong>Fase 7: Seguridad y Mejores Prácticas</strong></p>
+<ul>
+<li>Eliminación de la IP pública para proteger la base de datos.</li>
+<li>Habilitación de Cloud SQL Admin API y configuración de cadenas seguras.</li>
+<li>Uso de Spring Cloud GCP para integraciones nativas con Google Cloud.</li>
+</ul>
+</li>
+<li>
+<p><strong>Fase 8: Validación y Optimización</strong></p>
+<ul>
+<li>Configuración de credenciales locales para desarrollo seguro.</li>
+<li>Validación del funcionamiento de la API en producción y local.</li>
+</ul>
+</li>
+</ul>
+<h2 id="resultado-final"><strong>Resultado Final</strong></h2>
+<p>Tras completar este workshop, tendrás una aplicación Kotlin desplegada en la nube, conectada a una base de datos segura, con las mejores prácticas implementadas para garantizar rendimiento y escalabilidad.</p>
+<p>¡Gracias por participar en este workshop! Si tienes dudas o necesitas más ayuda, no dudes en contactarme o dejar tus comentarios en mis redes sociales. 🎉</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Geovanny Mendoza
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/geovannymcode" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/geovannycode" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/geovannycode/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../javascripts/tablesort.js"></script>
+      
+    
+  </body>
+</html>

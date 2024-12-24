@@ -1,0 +1,1490 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="GeoLabs Kotlin-GCP Docs">
+      
+      
+        <meta name="author" content="Geovanny Mendoza">
+      
+      
+        <link rel="canonical" href="https://geovannymcode.github.io/geolabs-kotlingcp.github.io/create_api_rest/">
+      
+      
+        <link rel="prev" href="..">
+      
+      
+        <link rel="next" href="../despliegue_gcp/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Crear API REST - GeoLabs Kotlin-GCP</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.6f8fc17f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fase-2-creacion-de-la-entidad-repositorio-servicio-y-controlador" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="GeoLabs Kotlin-GCP" class="md-header__button md-logo" aria-label="GeoLabs Kotlin-GCP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GeoLabs Kotlin-GCP
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Crear API REST
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://geovannymcode.github.io/geolabs-kotlingcp.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    /geovannymcode/geolabs-kotlingcp.github.io
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="GeoLabs Kotlin-GCP" class="md-nav__button md-logo" aria-label="GeoLabs Kotlin-GCP" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GeoLabs Kotlin-GCP
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://geovannymcode.github.io/geolabs-kotlingcp.github.io" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    /geovannymcode/geolabs-kotlingcp.github.io
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Crear API REST
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Crear API REST
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creacion-de-la-api-rest-y-pruebas-locales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creación de la API REST y Pruebas Locales
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creación de la API REST y Pruebas Locales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura-del-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura del Proyecto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-configuracion-local-base-de-datos-con-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Configuración Local: Base de Datos con Docker Compose
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-migraciones-con-flyway" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Migraciones con Flyway
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Migraciones con Flyway">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-archivos-de-migracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Archivos de Migración
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-ubicacion-de-los-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Ubicación de los Archivos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-flujo-de-migracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Flujo de Migración
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-ventajas-de-flyway" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Ventajas de Flyway
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-implementacion-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Implementación Técnica
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Implementación Técnica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-modelo-de-datos-speakerkt" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Modelo de Datos: Speaker.kt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-repositorio-speakerrepositorykt" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Repositorio: SpeakerRepository.kt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-servicio-speakerservicekt" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Servicio: SpeakerService.kt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-controlador-rest-speakercontrollerkt" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Controlador REST: SpeakerController.kt
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pruebas-locales-con-postman" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Pruebas Locales con Postman
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-continuacion-del-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Continuación del Proyecto
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-resumen-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Resumen General
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../despliegue_gcp/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Integración con GCP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../referencias/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Referencias
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#creacion-de-la-api-rest-y-pruebas-locales" class="md-nav__link">
+    <span class="md-ellipsis">
+      Creación de la API REST y Pruebas Locales
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Creación de la API REST y Pruebas Locales">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#estructura-del-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Estructura del Proyecto
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-configuracion-local-base-de-datos-con-docker-compose" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Configuración Local: Base de Datos con Docker Compose
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-migraciones-con-flyway" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Migraciones con Flyway
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Migraciones con Flyway">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-archivos-de-migracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 Archivos de Migración
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-ubicacion-de-los-archivos" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 Ubicación de los Archivos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-flujo-de-migracion" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 Flujo de Migración
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-ventajas-de-flyway" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 Ventajas de Flyway
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-implementacion-tecnica" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Implementación Técnica
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Implementación Técnica">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-modelo-de-datos-speakerkt" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Modelo de Datos: Speaker.kt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-repositorio-speakerrepositorykt" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 Repositorio: SpeakerRepository.kt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#33-servicio-speakerservicekt" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.3 Servicio: SpeakerService.kt
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#34-controlador-rest-speakercontrollerkt" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.4 Controlador REST: SpeakerController.kt
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pruebas-locales-con-postman" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Pruebas Locales con Postman
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-continuacion-del-proyecto" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Continuación del Proyecto
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-resumen-general" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Resumen General
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="fase-2-creacion-de-la-entidad-repositorio-servicio-y-controlador"><strong>Fase 2: Creación de la Entidad, Repositorio, Servicio y Controlador</strong></h1>
+<p>En esta sección implementaremos los componentes principales para nuestra API REST. Adicionalmente, configuraremos <strong>Flyway</strong> para las migraciones de base de datos y utilizaremos un archivo <code>compose.yaml</code> para ejecutar PostgreSQL localmente.</p>
+<h2 id="creacion-de-la-api-rest-y-pruebas-locales"><strong>Creación de la API REST y Pruebas Locales</strong></h2>
+<h3 id="estructura-del-proyecto"><strong>Estructura del Proyecto</strong></h3>
+<p>El proyecto está organizado en una estructura clara y modular, siguiendo las mejores prácticas de desarrollo con Spring Boot y Kotlin. La siguiente jerarquía de carpetas y archivos refleja cómo se distribuyen las responsabilidades dentro del proyecto:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>src
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w"> </span>├──<span class="w"> </span>main
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w"> </span>│<span class="w">   </span>├──<span class="w"> </span>kotlin
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w"> </span>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>com.geovannycode
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w"> </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>📄<span class="w"> </span>KotlinGcpApplication.kt
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="w"> </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>📄<span class="w"> </span>Speaker.kt
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="w"> </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>📄<span class="w"> </span>SpeakerController.kt
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="w"> </span>│<span class="w">   </span>│<span class="w">       </span>├──<span class="w"> </span>📄<span class="w"> </span>SpeakerRepository.kt
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="w"> </span>│<span class="w">   </span>│<span class="w">       </span>└──<span class="w"> </span>📄<span class="w"> </span>SpeakerService.kt
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="w"> </span>│<span class="w">   </span>└──<span class="w"> </span>resources
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="w"> </span>│<span class="w">       </span>├──<span class="w"> </span>📁<span class="w"> </span>db
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="w"> </span>│<span class="w">       </span>│<span class="w">   </span>└──<span class="w"> </span>migration
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="w"> </span>│<span class="w">       </span>│<span class="w">       </span>├──<span class="w"> </span>📄<span class="w"> </span>V1__Create_Speaker_Table.sql
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="w"> </span>│<span class="w">       </span>│<span class="w">       </span>└──<span class="w"> </span>📄<span class="w"> </span>V2__Add_Data_Speaker.sql
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="w"> </span>│<span class="w">       </span>├──<span class="w"> </span>📁<span class="w"> </span>static
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w"> </span>│<span class="w">       </span>├──<span class="w"> </span>📁<span class="w"> </span>templates
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="w"> </span>│<span class="w">       </span>└──<span class="w"> </span>📁<span class="w"> </span>application.properties
+</span></code></pre></div>
+<ul>
+<li><strong>Paquete principal</strong> (<code>com.geovannycode</code>): Aquí se encuentran las clases esenciales de la API:<ul>
+<li><code>KotlinGcpApplication</code>: Es el punto de entrada de la aplicación. Inicializa Spring Boot y configura el servidor embebido (Tomcat). </li>
+<li><code>Speaker</code>: Representa la entidad <code>Speaker</code> almacenada en la base de datos. Este modelo mapea los datos relacionales de la tabla PostgreSQL a un objeto Kotlin.</li>
+<li><code>SpeakerRepository</code>: Define las operaciones necesarias para interactuar con la base de datos. Hereda métodos predefinidos de Spring Data JPA como <code>findAll</code>, <code>save</code>, <code>findById</code>, y <code>deleteById</code>.</li>
+<li><code>SpeakerService</code>: Gestiona la lógica de negocio y las validaciones necesarias antes de interactuar con la base de datos.</li>
+<li><code>SpeakerController</code>: Maneja las solicitudes HTTP y expone los endpoints REST para interactuar con los servicios de la API.</li>
+</ul>
+</li>
+<li><strong>Directorio de recursos</strong> (<code>resources</code>):<ul>
+<li>Este directorio contiene configuraciones y scripts utilizados por la aplicación.<ul>
+<li><code>db/migration</code>: Contiene los archivos SQL que Flyway utiliza para crear y modificar el esquema de la base de datos.<ul>
+<li><code>V1__Create_Speaker_Table.sql</code>: Crea la tabla speakers.</li>
+<li><code>V2__Add_Data_Speaker.sql</code>: Inserta datos iniciales en la tabla para pruebas.</li>
+</ul>
+</li>
+<li><code>application.properties</code>:<ul>
+<li>Archivo de configuración con datos de conexión a la base de datos y otras configuraciones de la aplicación.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="1-configuracion-local-base-de-datos-con-docker-compose"><strong>1. Configuración Local: Base de Datos con Docker Compose</strong></h2>
+<p>El archivo <code>compose.yaml</code> es usado para definir y administrar servicios de contenedores. En este caso, configuramos un contenedor de <code>PostgreSQL</code> que servirá como nuestra base de datos en el entorno local. A continuación, explicamos cada sección del archivo.</p>
+<div class="language-yaml highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">docker-compose.yaml</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="nt">services</span><span class="p">:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="w">  </span><span class="nt">postgres_gcp</span><span class="p">:</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;postgres_gcp&quot;</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;postgres:16&#39;</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span><span class="nt">env_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./.env</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${DB_LOCAL_PORT}:${DB_DOCKER_PORT}</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">      </span><span class="nt">POSTGRES_USER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${POSTGRES_USER}</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">      </span><span class="nt">POSTGRES_PASSWORD</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${POSTGRES_PASSWORD}</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">      </span><span class="nt">POSTGRES_DB</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">${POSTGRES_DB}</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>
+<p><strong>Línea 1</strong> <code>services</code>: Define los servicios que se van a levantar con <code>Docker Compose</code>. Aquí, configuramos un único servicio llamado <code>postgres_gcp</code> que corresponde a un contenedor de <code>PostgreSQL</code>.</p>
+</li>
+<li>
+<p><strong>Línea 2</strong> <code>postgres_gcp</code>: Nombre del servicio dentro de Docker Compose. Este nombre puede ser utilizado para referenciar el contenedor en redes internas de Docker.</p>
+</li>
+<li>
+<p><strong>Línea 3</strong> <code>container_name</code>: <strong>"postgres_gcp"</strong> Asigna un nombre al contenedor que será visible cuando listemos los contenedores con docker ps. En este caso, el contenedor se llamará <code>postgres_gcp</code>.</p>
+</li>
+<li>
+<p><strong>Línea 4</strong> <code>image</code>: <strong>'postgres:17'</strong> Especifica la imagen que será utilizada para este servicio. Aquí usamos la versión <code>17</code> de la imagen oficial de PostgreSQL desde <code>Docker Hub</code>.</p>
+</li>
+<li>
+<p><strong>Línea 5</strong> <code>env_file: ./env</code> Indica que las variables de entorno serán cargadas desde un archivo llamado <code>.env</code> en el mismo directorio donde está el <code>compose.yaml</code>. Esto permite mantener las credenciales sensibles (como el usuario, contraseña y puerto) fuera del archivo principal.</p>
+</li>
+<li>
+<p><strong>Línea 6</strong> <code>ports</code>: Configura el mapeo de puertos entre el contenedor y el host local.</p>
+<ul>
+<li><code>${DB_LOCAL_PORT}:${DB_DOCKER_PORT}</code> Esto utiliza las variables definidas en el archivo <code>.env</code>. El puerto local (<code>DB_LOCAL_PORT</code>) estará conectado al puerto del contenedor (<code>DB_DOCKER_PORT</code>). Por ejemplo, si definimos <code>DB_LOCAL_PORT=5432</code>, la base de datos será accesible en <code>localhost:5432</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Línea 7</strong> <code>environment</code>: Declara las variables de entorno necesarias para configurar PostgreSQL en el contenedor.</p>
+<ul>
+<li><code>POSTGRES_USER</code>: Define el nombre del usuario administrador de la base de datos.</li>
+<li><code>POSTGRES_PASSWORD</code>: Asigna la contraseña del usuario administrador.</li>
+<li><code>POSTGRES_DB</code>: Especifica el nombre de la base de datos principal que se creará automáticamente cuando el contenedor se inicie.</li>
+</ul>
+</li>
+<li>
+<p><strong>Puntos Clave</strong></p>
+<ol>
+<li><strong>Configura las variables en el archivo</strong> <code>.env</code>: Personaliza los valores como el puerto local, usuario y nombre de la base de datos.</li>
+<li><strong>Automatización con Docker Support</strong>: Si estás utilizando Docker Support integrado en IntelliJ IDEA o tu herramienta de desarrollo, no es necesario ejecutar comandos manuales (<code>docker-compose up</code>). Al iniciar tu aplicación Spring Boot, Docker Support levanta automáticamente el contenedor de PostgreSQL. Esto simplifica el flujo de desarrollo.</li>
+</ol>
+</li>
+<li>
+<p><strong>Ventajas de Docker Compose con Docker Support</strong></p>
+<ul>
+<li><strong>Ahorro de tiempo</strong>: No necesitas ejecutar manualmente <code>docker-compose</code> siempre que inicies tu aplicación Spring Boot.</li>
+<li><strong>Integración</strong>: Docker Support coordina automáticamente la creación y administración del contenedor.</li>
+<li><strong>Estandarización</strong>: Al definir configuraciones en <code>.env</code>, todos los miembros del equipo pueden usar los mismos valores base.</li>
+</ul>
+</li>
+</ul>
+<h2 id="2-migraciones-con-flyway"><strong>2. Migraciones con Flyway</strong></h2>
+<p>Flyway es una herramienta de migración de base de datos que permite gestionar de forma controlada los cambios en el esquema y los datos iniciales. En este caso, utilizaremos Flyway para crear la tabla speakers y añadir datos iniciales en PostgreSQL.</p>
+<h3 id="21-archivos-de-migracion"><strong>2.1 Archivos  de Migración</strong></h3>
+<p>Flyway organiza los cambios en la base de datos mediante archivos de migración con un formato específico en el nombre, por ejemplo: <code>V1__Create_Speaker_Table.sql</code> y <code>V2__Add_Data_Speaker.sql</code>.</p>
+<ul>
+<li><code>V1__Create_Speaker_Table.sql</code>
+Este archivo contiene las instrucciones para crear la tabla <code>speakers</code> y su secuencia de IDs.</li>
+</ul>
+<div class="language-sql highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">V1__Create_Speaker_Table.sql</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1">1</a></span>
+<span class="normal"><a href="#__codelineno-2-2">2</a></span>
+<span class="normal"><a href="#__codelineno-2-3">3</a></span>
+<span class="normal"><a href="#__codelineno-2-4">4</a></span>
+<span class="normal"><a href="#__codelineno-2-5">5</a></span>
+<span class="normal"><a href="#__codelineno-2-6">6</a></span>
+<span class="normal"><a href="#__codelineno-2-7">7</a></span>
+<span class="normal"><a href="#__codelineno-2-8">8</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="k">CREATE</span><span class="w"> </span><span class="n">SEQUENCE</span><span class="w"> </span><span class="n">speaker_id_seq</span><span class="w"> </span><span class="k">START</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="k">INCREMENT</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="mi">50</span><span class="p">;</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2"></a>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">speakers</span><span class="w"> </span><span class="p">(</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="w">    </span><span class="n">id</span><span class="w"> </span><span class="nb">BIGINT</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="n">nextval</span><span class="p">(</span><span class="s1">&#39;speaker_id_seq&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="w">    </span><span class="n">country</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">255</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>V2__Add_Data_Speaker.sql</code>
+Este archivo agrega un registro inicial en la tabla <code>speakers</code> para facilitar las pruebas.</li>
+</ul>
+<div class="language-sql highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">V2__Add_Data_Speaker.sql</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1">1</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">speakers</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">country</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="n">nextval</span><span class="p">(</span><span class="s1">&#39;speaker_id_seq&#39;</span><span class="p">),</span><span class="w"> </span><span class="s1">&#39;Geovanny Mendoza&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Colombia&#39;</span><span class="p">);</span>
+</span></code></pre></div></td></tr></table></div>
+<h3 id="22-ubicacion-de-los-archivos"><strong>2.2 Ubicación de los Archivos</strong></h3>
+<ul>
+<li>
+<p>Los archivos de migración deben estar ubicados en el directorio: <code>src/main/resources/db/migration</code>.</p>
+</li>
+<li>
+<p>Esto es importante porque Flyway, por defecto, escanea esta ruta para aplicar las migraciones.</p>
+</li>
+</ul>
+<h3 id="23-flujo-de-migracion"><strong>2.3 Flujo de Migración</strong></h3>
+<ul>
+<li><strong>Inicio de la aplicación</strong>: Spring Boot detecta las configuraciones de Flyway y se conecta a la base de datos.</li>
+<li><strong>Verifica las migraciones pendientes</strong>: Flyway consulta la tabla <code>flyway_schema_history</code> en la base de datos (si no existe, la crea automáticamente) para determinar qué migraciones aún no se han aplicado.</li>
+<li><strong>Aplica las migraciones</strong>: Flyway ejecuta los archivos en orden de versión (por ejemplo, <code>V1</code>, <code>V2</code>, etc.).</li>
+<li><strong>Registro en <code>flyway_schema_history</code></strong>: Una vez aplicada una migración, Flyway registra el nombre del archivo, el estado y la fecha en esta tabla.</li>
+</ul>
+<h3 id="24-ventajas-de-flyway"><strong>2.4 Ventajas de Flyway</strong></h3>
+<ul>
+<li><strong>Control de versiones</strong>: Cada cambio en el esquema está versionado y registrado.</li>
+<li><strong>Automatización</strong>: Al iniciar la aplicación, Flyway aplica automáticamente las migraciones pendientes.</li>
+<li><strong>Reversibilidad</strong>: Facilita el mantenimiento de la base de datos al permitir manejar múltiples entornos con un esquema consistente.</li>
+</ul>
+<h2 id="3-implementacion-tecnica"><strong>3. Implementación Técnica</strong></h2>
+<p><strong>Punto de Entrada</strong>: <code>KotlinGcpApplication.kt</code></p>
+<p>El archivo <code>KotlinGcpApplication.kt</code> define el punto de entrada principal de nuestra aplicación. Es aquí donde Spring Boot inicia todo el proceso de configuración, creación de beans y levantamiento del servidor embebido (<code>Tomcat</code>).</p>
+<div class="language-kotlin highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">KotlinGcpApplication.kt</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-4-1">1</a></span>
+<span class="normal"><a href="#__codelineno-4-2">2</a></span>
+<span class="normal"><a href="#__codelineno-4-3">3</a></span>
+<span class="normal"><a href="#__codelineno-4-4">4</a></span>
+<span class="normal"><a href="#__codelineno-4-5">5</a></span>
+<span class="normal"><a href="#__codelineno-4-6">6</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="nd">@SpringBootApplication</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="kd">class</span><span class="w"> </span><span class="nc">KotlinGcpApplication</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="kd">fun</span><span class="w"> </span><span class="nf">main</span><span class="p">(</span><span class="n">args</span><span class="p">:</span><span class="w"> </span><span class="n">Array</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">    </span><span class="n">runApplication</span><span class="o">&lt;</span><span class="n">KotlinGcpApplication</span><span class="o">&gt;</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Esta clase define el punto de entrada de la aplicación:</p>
+<ul>
+<li><strong>Línea 1</strong> <code>@SpringBootApplication</code>: 
+Esta anotación combina tres anotaciones clave de Spring Boot:<ul>
+<li><code>@Configuration</code>: Marca la clase como una fuente de configuraciones de Spring.</li>
+<li><code>@EnableAutoConfiguration</code>: Activa la configuración automática de Spring Boot, cargando los componentes según las dependencias declaradas.</li>
+<li><code>@ComponentScan</code>: Escanea automáticamente el paquete actual y sus subpaquetes en busca de clases anotadas como <code>@Component</code>, <code>@Service</code>, <code>@Repository</code>, etc., para registrarlas como beans en el contexto de la aplicación.</li>
+</ul>
+</li>
+<li><strong>Línea 2</strong> <code>class KotlinGcpApplication</code>: <ul>
+<li>Define una clase vacía con el nombre de la aplicación. Aunque no contiene lógica adicional, Spring Boot la utiliza como punto central para identificar el contexto principal de la aplicación.</li>
+<li><strong>Nota</strong>: El nombre de la clase es arbitrario, pero debe ser único dentro del paquete y representativo de la funcionalidad de la aplicación.</li>
+</ul>
+</li>
+<li><strong>Línea 4</strong>: <code>fun main(args: Array&lt;String&gt;)</code><ul>
+<li>Define la función <code>main</code>, que es el punto de entrada estándar para cualquier aplicación escrita en Kotlin. Aquí es donde comienza la ejecución del programa.</li>
+</ul>
+</li>
+<li><strong>Línea 5</strong> <code>runApplication&lt;KotlinGcpApplication&gt;(*args)</code>:
+Esta línea ejecuta la función <code>runApplication</code>, que realiza las siguientes tareas:<ul>
+<li><strong>Inicia Spring Boot</strong>: Configura el contexto de la aplicación y todos los beans necesarios.</li>
+<li><strong>Levanta el Servidor Embebido</strong>: En este caso, inicia un servidor Tomcat que se ejecuta en el puerto <code>8080</code> por defecto.</li>
+<li><strong>Carga los Recursos de Configuración</strong>: Como <code>application.properties</code> o <code>application.yml</code>, que contienen configuraciones clave como la conexión a la base de datos.</li>
+<li><strong>Procesa los Argumentos</strong>: Los parámetros pasados en <code>args</code> se interpretan como argumentos de línea de comandos para personalizar el comportamiento de la aplicación en tiempo de ejecución.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Nota</strong>:
+El operador <code>*</code> delante de <code>args</code> se llama spread operator en Kotlin. Descompone el arreglo de argumentos para que puedan ser pasados individualmente como parámetros a la función <code>runApplication</code>.</p>
+<h3 id="31-modelo-de-datos-speakerkt"><strong>3.1 Modelo de Datos</strong>: <code>Speaker.kt</code></h3>
+<p>La clase <code>Speaker.kt</code> define el modelo de datos que representa la tabla <code>speakers</code> en la base de datos. Es una entidad JPA (Java Persistence API) que Spring Data utiliza para mapear automáticamente los registros de la base de datos a objetos Kotlin.</p>
+<div class="language-kotlin highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">Speaker.kt</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-5-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-5-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-5-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-5-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-5-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-5-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-5-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-5-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-5-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-5-10">10</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="nd">@Entity</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="nd">@Table</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;speakers&quot;</span><span class="p">)</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="kd">data</span><span class="w"> </span><span class="kd">class</span><span class="w"> </span><span class="nc">Speaker</span><span class="p">(</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="nd">@Id</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">    </span><span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GenerationType</span><span class="p">.</span><span class="na">SEQUENCE</span><span class="p">,</span><span class="w"> </span><span class="n">generator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;speaker_id_generator&quot;</span><span class="p">)</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="w">    </span><span class="nd">@SequenceGenerator</span><span class="p">(</span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;speaker_id_generator&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">sequenceName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;speaker_id_seq&quot;</span><span class="p">)</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Long?</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">name</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span><span class="p">,</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="w">    </span><span class="kd">val</span><span class="w"> </span><span class="nv">country</span><span class="p">:</span><span class="w"> </span><span class="kt">String</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>Línea 1</strong> <code>@Entity</code>: <ul>
+<li>Marca la clase como una entidad JPA, lo que indica que está vinculada a una tabla en la base de datos.</li>
+<li><code>Spring Boot</code>: Detecta esta anotación durante el escaneo de componentes (gracias a <code>@SpringBootApplication</code>) y registra automáticamente la clase como una entidad administrada.</li>
+</ul>
+</li>
+<li><strong>Línea 2</strong>: <code>@Table(name = "speakers")</code>:<ul>
+<li>Especifica el nombre de la tabla en la base de datos asociada con esta entidad.</li>
+</ul>
+</li>
+<li><strong>Línea 3</strong> <code>data class</code>: <ul>
+<li>La clase <code>Speaker</code> está definida como una <strong>data class</strong>, lo que aporta las siguientes ventajas:<ul>
+<li><strong>Inmutabilidad</strong>:<ul>
+<li>Los valores de las propiedades son constantes (<code>val</code>) y no pueden ser modificados después de la creación del objeto.</li>
+<li>Esto es útil en aplicaciones donde los datos no deben cambiarse accidentalmente.</li>
+</ul>
+</li>
+<li><strong>Métodos Automáticos Generados</strong>:<ul>
+<li><code>toString</code>: Proporciona una representación de texto para imprimir fácilmente los objetos.</li>
+<li><code>equals</code> y <code>hashCode</code>: Facilitan la comparación entre objetos.</li>
+<li><code>copy</code>: Permite crear una nueva instancia basada en un objeto existente con cambios en algunas propiedades.</li>
+</ul>
+</li>
+<li><strong>Compatibilidad con Kotlin/JPA</strong>:<ul>
+<li>Las <code>data class</code> se integran bien con JPA, siempre que cumplan las reglas básicas (como constructor primario completo).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Línea 4</strong> <code>@Id</code>: Define este campo como la clave primaria de la tabla.</li>
+<li><strong>Línea 5</strong> <code>@GeneratedValue</code>: Especifica que el valor de este campo será generado automáticamente.<ul>
+<li><code>strategy = GenerationType.SEQUENCE</code>: Usa una estrategia de secuencia, que es eficiente para PostgreSQL.</li>
+<li><code>generator = "speaker_id_generator"</code>: Asocia este campo a un generador de secuencias específico.</li>
+</ul>
+</li>
+<li><strong>Línea 6</strong> <code>SequenceGenerator</code>: Configura el generador de secuencias.<ul>
+<li><code>name = "speaker_id_generator"</code>: Nombre del generador asociado.</li>
+<li><code>sequenceName = "speaker_id_seq"</code>: Nombre de la secuencia en la base de datos que generará los valores del campo <code>id</code>.</li>
+</ul>
+</li>
+<li><strong>Línea 7</strong>: <code>Nullable</code> Se define como <code>Long? = null</code> porque el valor inicial es <code>null</code> hasta que se genera automáticamente al guardar el registro.</li>
+<li><strong>Campos</strong>:<ul>
+<li><code>id</code>: Clave primaria generada automáticamente usando una secuencia PostgreSQL.</li>
+<li><code>name</code>: Almacena el nombre del speaker.</li>
+<li><code>country</code>: Almacena el país de origen del speaker.</li>
+</ul>
+</li>
+</ul>
+<h3 id="32-repositorio-speakerrepositorykt"><strong>3.2 Repositorio</strong>: <code>SpeakerRepository.kt</code></h3>
+<p>El repositorio es una interfaz que permite interactuar con la base de datos de manera directa, manejando operaciones CRUD (<code>Crear, Leer, Actualizar y Eliminar</code>) sin necesidad de escribir código SQL manualmente. En este caso, <code>SpeakerRepository</code> hereda de <code>CrudRepository</code>, una clase proporcionada por Spring Data JPA.</p>
+<div class="language-kotlin highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">SpeakerRepository.kt</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-6-1">1</a></span>
+<span class="normal"><a href="#__codelineno-6-2">2</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="nd">@Repository</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="kd">interface</span><span class="w"> </span><span class="nc">SpeakerRepository</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">CrudRepository</span><span class="o">&lt;</span><span class="n">Speaker</span><span class="p">,</span><span class="w"> </span><span class="kt">Long</span><span class="o">&gt;</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>Línea 2</strong>: <code>interface SpeakerRepository : CrudRepository&lt;Speaker, Long&gt;</code><ul>
+<li><code>interface</code>: Define que <code>SpeakerRepository</code> es una interfaz, no una clase.</li>
+<li><code>: CrudRepository&lt;Speaker, Long&gt;</code>:<ul>
+<li><code>CrudRepository</code> es una interfaz genérica que requiere dos parámetros:</li>
+<li><code>Speaker</code>: Es la entidad sobre la que este repositorio operará.</li>
+<li><code>Long</code>: Es el tipo de dato de la clave primaria de la entidad Speaker.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Nota Importante</strong>:
+Spring implementa automáticamente esta interfaz al detectar su definición durante el escaneo de componentes. No es necesario escribir código adicional para implementar esta interfaz, lo que ahorra tiempo y esfuerzo.</p>
+<ul>
+<li>Este repositorio hereda de <code>CrudRepository</code>, proporcionando métodos como:<ul>
+<li><strong><code>findById</code></strong>: Busca un registro por su ID.</li>
+<li><strong><code>findAll</code></strong>: Devuelve todos los registros.</li>
+<li><strong><code>save</code></strong>: Guarda o actualiza un registro.</li>
+<li><strong><code>deleteById</code></strong>: Elimina un registro por ID.</li>
+</ul>
+</li>
+</ul>
+<h3 id="33-servicio-speakerservicekt"><strong>3.3 Servicio</strong>: <code>SpeakerService.kt</code></h3>
+<p>El archivo <code>SpeakerService.kt</code> implementa la lógica de negocio para la API REST. Actúa como un intermediario entre el controlador y el repositorio, asegurando que las operaciones CRUD (<code>Crear, Leer, Actualizar y Eliminar</code>) se realicen de manera controlada.</p>
+<div class="language-kotlin highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">SpeakerService.kt</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-7-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-7-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-7-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-7-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-7-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-7-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-7-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-7-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-7-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-7-10">10</a></span>
+<span class="normal"><a href="#__codelineno-7-11">11</a></span>
+<span class="normal"><a href="#__codelineno-7-12">12</a></span>
+<span class="normal"><a href="#__codelineno-7-13">13</a></span>
+<span class="normal"><a href="#__codelineno-7-14">14</a></span>
+<span class="normal"><a href="#__codelineno-7-15">15</a></span>
+<span class="normal"><a href="#__codelineno-7-16">16</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="nd">@Service</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2"></a><span class="nd">@Transactional</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="kd">class</span><span class="w"> </span><span class="nc">SpeakerService</span><span class="p">(</span><span class="kd">val</span><span class="w"> </span><span class="nv">repo</span><span class="p">:</span><span class="w"> </span><span class="n">SpeakerRepository</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getSpeakers</span><span class="p">():</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Speaker</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repo</span><span class="p">.</span><span class="na">findAll</span><span class="p">().</span><span class="na">toList</span><span class="p">()</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getSpeaker</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Long</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repo</span><span class="p">.</span><span class="na">findById</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">createSpeaker</span><span class="p">(</span><span class="n">speaker</span><span class="p">:</span><span class="w"> </span><span class="n">Speaker</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repo</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">speaker</span><span class="p">)</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">deleteSpeaker</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Long</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">repo</span><span class="p">.</span><span class="na">deleteById</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">updateSpeaker</span><span class="p">(</span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Long</span><span class="p">,</span><span class="w"> </span><span class="n">updatedSpeaker</span><span class="p">:</span><span class="w"> </span><span class="n">Speaker</span><span class="p">):</span><span class="w"> </span><span class="n">Speaker? </span><span class="p">{</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">repo</span><span class="p">.</span><span class="na">existsById</span><span class="p">(</span><span class="n">id</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10"></a><span class="w">            </span><span class="kd">val</span><span class="w"> </span><span class="nv">speakerToUpdate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">updatedSpeaker</span><span class="p">.</span><span class="na">copy</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11"></a><span class="w">            </span><span class="n">repo</span><span class="p">.</span><span class="na">save</span><span class="p">(</span><span class="n">speakerToUpdate</span><span class="p">)</span>
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-7-13"><a id="__codelineno-7-13" name="__codelineno-7-13"></a><span class="w">            </span><span class="kc">null</span>
+</span><span id="__span-7-14"><a id="__codelineno-7-14" name="__codelineno-7-14"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-7-15"><a id="__codelineno-7-15" name="__codelineno-7-15"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-7-16"><a id="__codelineno-7-16" name="__codelineno-7-16"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><strong>Línea 1</strong>: <code>@Service</code> Marca esta clase como un servicio administrado por <strong>Spring</strong>. Spring Boot Detecta automáticamente esta anotación durante el escaneo de componentes y la registra como un <code>bean</code> disponible en el contenedor de la aplicación.<ul>
+<li><strong>Ventaja</strong>: Permite inyectar esta clase en otros componentes (<code>como el controlador)</code> sin necesidad de inicializarla manualmente.</li>
+</ul>
+</li>
+<li><strong>Línea 2</strong>: <code>@Transactional</code> Garantiza que todas las operaciones dentro de este servicio se ejecuten dentro de una transacción.<ul>
+<li><strong>Ventajas</strong>:<ul>
+<li>Si ocurre un error en cualquier parte del método, todas las operaciones realizadas dentro de la transacción serán revertidas.</li>
+<li>Asegura consistencia en la base de datos.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Línea 3</strong> <code>Constructor: private val repo: SpeakerRepository</code><ul>
+<li>Inyecta automáticamente el repositorio <code>SpeakerRepository</code> en el servicio.</li>
+<li>Esto permite acceder a los métodos predefinidos en <code>CrudRepository</code> (como <code>findAll</code>, <code>save</code>, etc.) para interactuar con la base de datos.</li>
+</ul>
+</li>
+<li><strong>Línea 4</strong> <code>getSpeakers</code>: Devuelve una lista de todos los registros en la tabla speakers.<ul>
+<li><strong>Detalle</strong>:<ul>
+<li><code>repo.findAll()</code>: Devuelve un <code>Iterable&lt;Speaker&gt;</code>.</li>
+<li><code>.toList()</code>: Convierte el iterable en una lista, que es más fácil de manejar.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Línea 5</strong> <code>getSpeaker</code>: Busca un registro por su clave primaria (<code>id</code>) y lo devuelve. Si no existe, devuelve <code>null</code>.<ul>
+<li><strong>Detalle</strong>:<ul>
+<li><code>repo.findById(id)</code>: Devuelve un <code>Optional&lt;Speaker&gt;</code>.</li>
+<li><code>.orElse(null)</code>: Extrae el valor si existe, o devuelve <code>null</code> si no lo encuentra.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Línea 6</strong> <code>createSpeaker</code>: Inserta un nuevo registro en la base de datos.<ul>
+<li><strong>Detalle</strong>:<ul>
+<li><code>repo.save(speaker)</code>: Guarda el objeto <code>Speaker</code> en la base de datos y devuelve la entidad guardada con su clave primaria (<code>id</code>) asignada.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Línea 7</strong> <code>deleteSpeaker</code>: Elimina un registro por su clave primaria (id).<ul>
+<li><strong>Detalle</strong>:<ul>
+<li><code>repo.deleteById(id)</code>: Elimina el registro correspondiente en la base de datos.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><strong>Línea 8</strong> <code>updateSpeaker</code>: Actualiza un registro existente en la base de datos. Si no existe, devuelve null.<ul>
+<li><strong>Detalle</strong>:<ul>
+<li><code>repo.existsById(id)</code>: Verifica si el registro con el <code>id</code> especificado existe.</li>
+<li><code>updatedSpeaker.copy(id = id)</code>: Crea una nueva instancia del objeto <code>Speaker</code> con el id correcto.</li>
+<li><code>repo.save(speakerToUpdate)</code>: Guarda el registro actualizado.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="34-controlador-rest-speakercontrollerkt"><strong>3.4 Controlador REST</strong>: <code>SpeakerController.kt</code></h3>
+<p>El controlador REST es la capa que expone la lógica de negocio a través de la red utilizando la arquitectura REST (<strong>Representational State Transfer</strong>). Esto permite interactuar con la API mediante solicitudes HTTP estándar como <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code>, entre otros.</p>
+<p><strong>¿Por Qué @RestController?</strong></p>
+<ul>
+<li><code>@RestController</code> es una anotación de Spring que combina <code>@Controller</code> y <code>@ResponseBody</code>.</li>
+<li>
+<p>Todos los métodos en una clase marcada como <code>@RestController</code> retornan automáticamente los datos en formato JSON o XML, según lo que soporte el cliente.</p>
+</li>
+<li>
+<p><strong>Ventajas</strong>:</p>
+<ul>
+<li>Simplifica la creación de controladores RESTful al eliminar la necesidad de agregar <code>@ResponseBody</code> en cada método.</li>
+<li>Los datos devueltos por los métodos no se renderizan como vistas HTML (como lo haría un <code>@Controller</code> tradicional), sino como una respuesta HTTP con un cuerpo en formato JSON.</li>
+</ul>
+</li>
+<li>
+<p><strong>Arquitectura REST</strong>:</p>
+<ul>
+<li>REST sigue los principios HTTP para operar con recursos.</li>
+<li>Cada recurso tiene una representación única (en este caso, la entidad Speaker) y puede ser manipulado utilizando verbos HTTP.</li>
+</ul>
+</li>
+</ul>
+<div class="language-kotlin highlight"><table class="highlighttable"><tr><th colspan="2" class="filename"><span class="filename">SpeakerController.kt</span></th></tr><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-8-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-8-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-8-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-8-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-8-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-8-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-8-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-8-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-8-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-8-10">10</a></span>
+<span class="normal"><a href="#__codelineno-8-11">11</a></span>
+<span class="normal"><a href="#__codelineno-8-12">12</a></span>
+<span class="normal"><a href="#__codelineno-8-13">13</a></span>
+<span class="normal"><a href="#__codelineno-8-14">14</a></span>
+<span class="normal"><a href="#__codelineno-8-15">15</a></span>
+<span class="normal"><a href="#__codelineno-8-16">16</a></span>
+<span class="normal"><a href="#__codelineno-8-17">17</a></span>
+<span class="normal"><a href="#__codelineno-8-18">18</a></span>
+<span class="normal"><a href="#__codelineno-8-19">19</a></span>
+<span class="normal"><a href="#__codelineno-8-20">20</a></span>
+<span class="normal"><a href="#__codelineno-8-21">21</a></span>
+<span class="normal"><a href="#__codelineno-8-22">22</a></span>
+<span class="normal"><a href="#__codelineno-8-23">23</a></span>
+<span class="normal"><a href="#__codelineno-8-24">24</a></span>
+<span class="normal"><a href="#__codelineno-8-25">25</a></span>
+<span class="normal"><a href="#__codelineno-8-26">26</a></span>
+<span class="normal"><a href="#__codelineno-8-27">27</a></span>
+<span class="normal"><a href="#__codelineno-8-28">28</a></span>
+<span class="normal"><a href="#__codelineno-8-29">29</a></span>
+<span class="normal"><a href="#__codelineno-8-30">30</a></span>
+<span class="normal"><a href="#__codelineno-8-31">31</a></span>
+<span class="normal"><a href="#__codelineno-8-32">32</a></span>
+<span class="normal"><a href="#__codelineno-8-33">33</a></span>
+<span class="normal"><a href="#__codelineno-8-34">34</a></span>
+<span class="normal"><a href="#__codelineno-8-35">35</a></span>
+<span class="normal"><a href="#__codelineno-8-36">36</a></span>
+<span class="normal"><a href="#__codelineno-8-37">37</a></span>
+<span class="normal"><a href="#__codelineno-8-38">38</a></span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="nd">@RestController</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="nd">@RequestMapping</span><span class="p">(</span><span class="s">&quot;/api/speakers&quot;</span><span class="p">)</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="kd">class</span><span class="w"> </span><span class="nc">SpeakerController</span><span class="p">(</span><span class="kd">private</span><span class="w"> </span><span class="kd">val</span><span class="w"> </span><span class="nv">service</span><span class="p">:</span><span class="w"> </span><span class="n">SpeakerService</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4"></a>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="w">    </span><span class="c1">// 1. Recuperar todos los registros</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="w">    </span><span class="nd">@GetMapping</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getSpeakers</span><span class="p">():</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Speaker</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="o">=</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8"></a><span class="w">        </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">ok</span><span class="p">(</span><span class="n">service</span><span class="p">.</span><span class="na">getSpeakers</span><span class="p">())</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9"></a>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10"></a><span class="w">    </span><span class="c1">// 2. Recuperar un registro por ID</span>
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11"></a><span class="w">    </span><span class="nd">@GetMapping</span><span class="p">(</span><span class="s">&quot;/{id}&quot;</span><span class="p">)</span>
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">getSpeaker</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Long</span><span class="p">):</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">Speaker</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span>
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13"></a><span class="w">        </span><span class="n">service</span><span class="p">.</span><span class="na">getSpeaker</span><span class="p">(</span><span class="n">id</span><span class="p">).</span><span class="na">map</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">ok</span><span class="p">(</span><span class="nb">it</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14"></a><span class="w">            </span><span class="p">.</span><span class="na">orElse</span><span class="p">(</span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">notFound</span><span class="p">().</span><span class="na">build</span><span class="p">())</span>
+</span><span id="__span-8-15"><a id="__codelineno-8-15" name="__codelineno-8-15"></a>
+</span><span id="__span-8-16"><a id="__codelineno-8-16" name="__codelineno-8-16"></a><span class="w">    </span><span class="c1">// 3. Crear un nuevo registro</span>
+</span><span id="__span-8-17"><a id="__codelineno-8-17" name="__codelineno-8-17"></a><span class="w">    </span><span class="nd">@PostMapping</span>
+</span><span id="__span-8-18"><a id="__codelineno-8-18" name="__codelineno-8-18"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">createSpeaker</span><span class="p">(</span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">speaker</span><span class="p">:</span><span class="w"> </span><span class="n">Speaker</span><span class="p">):</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">Speaker</span><span class="o">&gt;</span><span class="w"> </span><span class="o">=</span>
+</span><span id="__span-8-19"><a id="__codelineno-8-19" name="__codelineno-8-19"></a><span class="w">        </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">ok</span><span class="p">(</span><span class="n">service</span><span class="p">.</span><span class="na">createSpeaker</span><span class="p">(</span><span class="n">speaker</span><span class="p">))</span>
+</span><span id="__span-8-20"><a id="__codelineno-8-20" name="__codelineno-8-20"></a>
+</span><span id="__span-8-21"><a id="__codelineno-8-21" name="__codelineno-8-21"></a><span class="w">    </span><span class="c1">// 4. Eliminar un registro por ID</span>
+</span><span id="__span-8-22"><a id="__codelineno-8-22" name="__codelineno-8-22"></a><span class="w">    </span><span class="nd">@DeleteMapping</span><span class="p">(</span><span class="s">&quot;/{id}&quot;</span><span class="p">)</span>
+</span><span id="__span-8-23"><a id="__codelineno-8-23" name="__codelineno-8-23"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">deleteSpeaker</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Long</span><span class="p">):</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">Void</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-24"><a id="__codelineno-8-24" name="__codelineno-8-24"></a><span class="w">        </span><span class="n">service</span><span class="p">.</span><span class="na">deleteSpeaker</span><span class="p">(</span><span class="n">id</span><span class="p">)</span>
+</span><span id="__span-8-25"><a id="__codelineno-8-25" name="__codelineno-8-25"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">noContent</span><span class="p">().</span><span class="na">build</span><span class="p">()</span>
+</span><span id="__span-8-26"><a id="__codelineno-8-26" name="__codelineno-8-26"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-27"><a id="__codelineno-8-27" name="__codelineno-8-27"></a>
+</span><span id="__span-8-28"><a id="__codelineno-8-28" name="__codelineno-8-28"></a><span class="w">    </span><span class="c1">// 5. Actualizar un registro existente</span>
+</span><span id="__span-8-29"><a id="__codelineno-8-29" name="__codelineno-8-29"></a><span class="w">    </span><span class="nd">@PutMapping</span><span class="p">(</span><span class="s">&quot;/{id}&quot;</span><span class="p">)</span>
+</span><span id="__span-8-30"><a id="__codelineno-8-30" name="__codelineno-8-30"></a><span class="w">    </span><span class="kd">fun</span><span class="w"> </span><span class="nf">updateSpeaker</span><span class="p">(</span><span class="nd">@PathVariable</span><span class="w"> </span><span class="n">id</span><span class="p">:</span><span class="w"> </span><span class="kt">Long</span><span class="p">,</span><span class="w"> </span><span class="nd">@RequestBody</span><span class="w"> </span><span class="n">updatedSpeaker</span><span class="p">:</span><span class="w"> </span><span class="n">Speaker</span><span class="p">):</span><span class="w"> </span><span class="n">ResponseEntity</span><span class="o">&lt;</span><span class="n">Speaker</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-31"><a id="__codelineno-8-31" name="__codelineno-8-31"></a><span class="w">        </span><span class="kd">val</span><span class="w"> </span><span class="nv">updated</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">service</span><span class="p">.</span><span class="na">updateSpeaker</span><span class="p">(</span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">updatedSpeaker</span><span class="p">)</span>
+</span><span id="__span-8-32"><a id="__codelineno-8-32" name="__codelineno-8-32"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">updated</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-33"><a id="__codelineno-8-33" name="__codelineno-8-33"></a><span class="w">            </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">ok</span><span class="p">(</span><span class="n">updated</span><span class="p">)</span>
+</span><span id="__span-8-34"><a id="__codelineno-8-34" name="__codelineno-8-34"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-8-35"><a id="__codelineno-8-35" name="__codelineno-8-35"></a><span class="w">            </span><span class="n">ResponseEntity</span><span class="p">.</span><span class="na">notFound</span><span class="p">().</span><span class="na">build</span><span class="p">()</span>
+</span><span id="__span-8-36"><a id="__codelineno-8-36" name="__codelineno-8-36"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-8-37"><a id="__codelineno-8-37" name="__codelineno-8-37"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-8-38"><a id="__codelineno-8-38" name="__codelineno-8-38"></a><span class="p">}</span>
+</span></code></pre></div></td></tr></table></div>
+<p>Este archivo expone los endpoints para interactuar con la API:</p>
+<ul>
+<li>
+<p><strong>Líneas 6-8</strong>: Define el método que maneja solicitudes <code>GET</code> en el endpoint <code>/api/speakers</code>.</p>
+<ul>
+<li>Permitir al cliente obtener una lista de todos los <code>Speaker</code> registrados en la base de datos.</li>
+<li><strong>Anotaciones importantes</strong>: <code>@GetMapping</code> Especifica que este método manejará solicitudes HTTP con el verbo <code>GET</code>. Este tipo de solicitud se utiliza comúnmente para recuperar información sin modificar el estado del servidor.</li>
+<li><strong>Flujo del método</strong>: Llama al servicio (<code>service.getSpeakers()</code>) para recuperar una lista con todos los registros de <code>Speaker</code>.<ul>
+<li>Devuelve un <code>ResponseEntity</code> con:<ul>
+<li><strong>Código HTTP</strong> <code>200 OK</code>, que indica éxito en la solicitud.</li>
+<li><strong>Cuerpo de la respuesta</strong>: Un listado JSON con los objetos <code>Speaker</code>.</li>
+</ul>
+</li>
+<li><strong>Códigos de respuesta</strong>:<ul>
+<li><strong>200 OK</strong>: Indica que la solicitud fue exitosa. Si no hay speakers registrados, se devuelve una lista vacía.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Líneas 11-14</strong>: Define el método que maneja solicitudes <code>GET</code>con un parámetro dinámico (<code>id</code>) en el endpoint <code>/api/speakers/{id}</code>.</p>
+<ul>
+<li>Permitir al cliente recuperar la información de un <code>Speaker</code> específico usando su ID único.</li>
+<li><strong>Anotaciones importantes</strong>: <code>@GetMapping("/{id}")</code> Asigna este método a solicitudes <code>GET</code> con un identificador dinámico (<code>{id}</code>) en la URL. y con el <code>@PathVariable</code> Extrae el valor <code>{id}</code> de la URL y lo asigna al parámetro <code>id</code>. Esto facilita el uso de rutas dinámicas.</li>
+<li><strong>Flujo del método</strong>: El servidor recibe la solicitud con el ID proporcionado en la URL.<ul>
+<li>Llama al servicio (<code>service.getSpeaker(id)</code>) para buscar el <code>Speaker</code> correspondiente.</li>
+<li>Si el registro es encontrado devuelve un <code>ResponseEntity</code> con:<ul>
+<li><strong>Código HTTP</strong> <code>200 OK</code>, que indica éxito en la solicitud.</li>
+<li><strong>Cuerpo de la respuesta</strong>: El objeto <code>Speaker</code> encontrado.</li>
+</ul>
+</li>
+<li>Si no existe devuelve un <code>ResponseEntity</code> con:<ul>
+<li><strong>Código HTTP</strong> <code>404 Not Found</code>, indicando que el recurso solicitado no existe.</li>
+</ul>
+</li>
+<li><strong>Códigos de respuesta</strong>:<ul>
+<li><code>200 OK</code>: El <code>Speaker</code> fue encontrado exitosamente.</li>
+<li><code>404 Not Found</code>: No se encontró ningún registro con el ID proporcionado.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Líneas 17-19</strong>: Define el método que maneja solicitudes <code>POST</code> en el endpoint <code>/api/speakers</code>.</p>
+<ul>
+<li>Este método permite al cliente crear un nuevo registro de <code>Speaker</code> enviando los datos en formato <code>JSON</code>. Utiliza el servicio (<code>service.createSpeaker</code>) para procesar y almacenar el objeto recibido en la base de datos.</li>
+<li><strong>Anotaciones importantes</strong>: <code>@PostMapping</code> Especifica que este método responderá a solicitudes <code>HTTP</code> con el verbo <code>POST</code>. Este tipo de solicitud se utiliza comúnmente para crear nuevos recursos en un servidor. Por otro lado el  <code>@RequestBody</code> indica que el cuerpo de la solicitud HTTP (<code>enviado por el cliente</code>) será deserializado automáticamente a un objeto <code>Speaker</code>. Esto simplifica la lectura de datos <code>JSON</code> enviados por el cliente.</li>
+<li><strong>Flujo del método</strong>: Recibe un objeto JSON en el cuerpo de la solicitud (por ejemplo, un Speaker con atributos como name y country).<ul>
+<li>Convierte este <code>JSON</code> a un objeto <code>Speaker</code> usando la anotación <code>@RequestBody</code>.</li>
+<li>Llama al servicio (<code>service.createSpeaker(speaker)</code>) para guardar este objeto en la base de datos.</li>
+<li>Devuelve un <code>ResponseEntity</code> con:<ul>
+<li><strong>Código HTTP</strong> <code>200 OK</code> indicando que la solicitud se procesó correctamente.</li>
+<li><strong>Cuerpo de la respuesta</strong>: El objeto Speaker recién creado, con su <code>id</code> generado automáticamente por la base de datos.</li>
+</ul>
+</li>
+<li><strong>Códigos de respuesta</strong>:<ul>
+<li><code>200 OK</code>: Se devuelve cuando el objeto se crea correctamente.</li>
+<li><code>Errores</code>: No se manejan errores explícitos en este método, pero posibles problemas (como validación fallida) se deben manejar en otro nivel (por ejemplo, en las anotaciones de validación).</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Líneas 22-26</strong>: Define el método que maneja solicitudes <code>DELETE</code> en el endpoint <code>/api/speakers/{id}</code>.</p>
+<ul>
+<li>Permitir al cliente eliminar un <code>Speaker</code> específico usando su <code>ID</code> único.</li>
+<li><strong>Anotaciones importantes</strong>: <code>@DeleteMapping("/{id}")</code> Asigna este método a solicitudes <code>DELETE</code> con un identificador dinámico en la <code>URL</code> y el <code>@PathVariable</code> Extrae el valor <code>{id}</code> de la URL y lo asigna al parámetro <code>id</code>.</li>
+<li><strong>Flujo del método</strong>: El servidor recibe la solicitud con el ID del recurso a eliminar.<ul>
+<li>Llama al servicio (service.deleteSpeaker(id)) para realizar la eliminación en la base de datos.</li>
+<li>Devuelve un ResponseEntity con:<ul>
+<li><strong>Código HTTP</strong> <code>200 OK</code>, que indica éxito en la solicitud.</li>
+</ul>
+</li>
+<li><strong>Códigos de respuesta</strong>:<ul>
+<li><strong><code>204 No Content</code></strong>: El Speaker fue eliminado exitosamente.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Líneas 29-37</strong>: Define el método que maneja solicitudes <code>PUT</code> en el endpoint <code>/api/speakers/{id}</code>.</p>
+<ul>
+<li>Permitir al cliente actualizar un registro existente de <code>Speaker</code> enviando los nuevos datos en formato <code>JSON</code>.</li>
+<li><strong>Anotaciones importantes</strong>: <code>@PutMapping("/{id}")</code> Asigna este método a solicitudes <code>PUT</code> con un identificador dinámico en la URL. y <code>@PathVariable</code> Extrae el valor <code>{id}</code> de la URL y lo asigna al parámetro <code>id</code> y por ultimo <code>@RequestBody</code> que convierte el cuerpo <code>JSON</code> de la solicitud en un objeto Speaker.</li>
+<li><strong>Flujo del método</strong>: Recibe un objeto JSON con los nuevos datos del Speaker.<ul>
+<li>Llama al servicio (<code>service.updateSpeaker(id, updatedSpeaker)</code>) para realizar la actualización.</li>
+<li>Si el registro existe devuelve un <code>ResponseEntity</code> con:<ul>
+<li><strong>Código HTTP</strong> <code>200 OK</code>.</li>
+<li><strong>Cuerpo de la respuesta</strong>: El objeto Speaker actualizado.</li>
+</ul>
+</li>
+<li>Si no existe devuelve un <code>ResponseEntity</code> con:<ul>
+<li><strong>Código HTTP</strong> <code>404 Not Found</code></li>
+</ul>
+</li>
+<li><strong>Códigos de respuesta</strong>:<ul>
+<li><strong><code>200 OK</code></strong>: El <code>Speaker</code> fue actualizado exitosamente.</li>
+<li><strong><code>404 Not Found</code></strong>: No existe un registro con el ID proporcionado.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="4-pruebas-locales-con-postman"><strong>4. Pruebas Locales con Postman</strong></h2>
+<p>Una vez que la <code>API REST</code> está implementada y la base de datos configurada, podemos probar los endpoints utilizando Postman, una herramienta de pruebas para APIs REST.</p>
+<p>La <code>Figura #1</code> muestra un ejemplo de la respuesta al probar este endpoint con <code>Postman</code>.</p>
+<p><img alt="GeoLabs Kotlin GCP" src="../files/Imagen02.png" title="GeoLabs Kotlin GCP" /></p>
+<p align="center">
+  <strong>Figura # 1:</strong> Representación del Postman
+</p>
+
+<ul>
+<li>Ejemplo:<ul>
+<li><strong><code>GET /api/speakers</code></strong>: Recupera todos los speakers.</li>
+<li><strong><code>POST /api/speakers</code></strong>: Crea un nuevo speaker con este JSON:
+    <div class="language-json highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">{</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">    </span><span class="nt">&quot;name&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;John Doe&quot;</span><span class="p">,</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="nt">&quot;country&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;USA&quot;</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="p">}</span>
+</span></code></pre></div></li>
+<li><strong><code>PUT /api/speakers/{id}</code></strong>: Actualiza un speaker.</li>
+<li><strong><code>DELETE /api/speakers/{id}</code></strong>: Elimina un speaker.</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-continuacion-del-proyecto"><strong>5. Continuación del Proyecto</strong></h2>
+<p>En la próxima <code>sesión/documento</code>, avanzaremos con la integración de esta API REST en <strong><code>Google Cloud Platform (GCP)</code></strong>. </p>
+<ul>
+<li>Exploraremos las siguientes tareas:<ul>
+<li>Despliegue de la aplicación en App Engine.</li>
+<li>Configuración de la base de datos en Cloud SQL.</li>
+<li>Automatización del flujo de despliegue utilizando Cloud Build.</li>
+</ul>
+</li>
+</ul>
+<p>¡Prepárate para llevar esta aplicación a la nube! 🚀</p>
+<h2 id="6-resumen-general"><strong>6. Resumen General</strong></h2>
+<p>En este taller, desarrollamos una API REST con Kotlin, Spring Boot y PostgreSQL. </p>
+<p>Los pasos principales fueron:</p>
+<ul>
+<li>
+<p><strong>Configuración del Proyecto</strong>: </p>
+<ul>
+<li>Usamos <code>Spring Initializr</code> para generar el proyecto con dependencias clave.</li>
+<li>Organizamos el código en paquetes y recursos para una estructura clara.</li>
+</ul>
+</li>
+<li>
+<p><strong>Implementación de la API</strong>:</p>
+<ul>
+<li>Creamos la entidad <code>Speaker</code>, el repositorio <code>SpeakerRepository</code>, el servicio <code>SpeakerService</code> y el controlador <code>SpeakerController</code> para exponer endpoints REST (<code>GET, POST, PUT, DELETE</code>).</li>
+<li>Implementamos lógica de negocio para gestionar operaciones <code>CRUD</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Base de Datos Local</strong>:</p>
+<ul>
+<li>Configuramos PostgreSQL con Docker Compose.</li>
+<li>Usamos Flyway para manejar migraciones de base de datos y datos iniciales.</li>
+</ul>
+</li>
+<li>
+<p><strong>Pruebas Locales</strong>:</p>
+<ul>
+<li>Probamos los endpoints con Postman, verificando códigos de respuesta (<code>200 OK, 404 Not Found, etc.</code>) y datos retornados en formato <code>JSON</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Próximos Pasos</strong></p>
+<ul>
+<li>En la próxima sesión, desplegaremos esta API en <code>Google Cloud Platform (GCP)</code> utilizando <code>App Engine</code>, <code>Cloud SQL</code> y <code>Cloud Build</code>.</li>
+</ul>
+</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2024 Geovanny Mendoza
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/geovannymcode" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1M480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2m-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3m-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/geovannycode" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://www.linkedin.com/in/geovannycode/" target="_blank" rel="noopener" title="www.linkedin.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M416 32H31.9C14.3 32 0 46.5 0 64.3v383.4C0 465.5 14.3 480 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3c0-17.8-14.4-32.3-32-32.3M135.4 416H69V202.2h66.5V416zm-33.2-243c-21.3 0-38.5-17.3-38.5-38.5S80.9 96 102.2 96c21.2 0 38.5 17.3 38.5 38.5 0 21.3-17.2 38.5-38.5 38.5m282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+        <script src="https://unpkg.com/tablesort@5.3.0/dist/tablesort.min.js"></script>
+      
+        <script src="../javascripts/tablesort.js"></script>
+      
+    
+  </body>
+</html>
